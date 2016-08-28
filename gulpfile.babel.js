@@ -235,13 +235,16 @@ gulp.task('generate-service-worker', ['copy-sw-scripts'], () => {
     // sw-toolbox.js needs to be listed first. It sets up methods used in runtime-caching.js.
     importScripts: [
       'scripts/sw/sw-toolbox.js',
-      'scripts/sw/runtime-caching.js'
+      'scripts/sw/runtime-caching.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.min.js',
+      'https://code.getmdl.io/1.1.3/material.min.js'
     ],
     staticFileGlobs: [
       // Add/remove glob patterns to match your directory setup.
       `${rootDir}/images/**/*`,
       `${rootDir}/scripts/**/*.js`,
       `${rootDir}/styles/**/*.css`,
+      `${rootDir}/components/*.{html,json}`,
       `${rootDir}/*.{html,json}`
     ],
     // Translates a static file path to the relative URL that it's served from.
