@@ -71,49 +71,4 @@
       console.error('Error during service worker registration:', e);
     });
   }
-
-  function importWebComponents() {
-    const components = [
-      {
-        idOfImportLink: 'component-header',
-        destination: '#container',
-        operation: 'prepend'
-      },
-      {
-        idOfImportLink: 'component-codingWindow',
-        destination: '#content'
-      },
-      {
-        idOfImportLink: 'component-about',
-        destination: '#content'
-      },
-      {
-        idOfImportLink: 'component-footer',
-        destination: '#content'
-      }
-    ];
-    components.forEach(importAndInsertComponent);
-  }
-
-  function importAndInsertComponent(data) {
-    const importedComponent = document.getElementById(data.idOfImportLink).import;
-    const componentElements = importedComponent.body.childNodes || [];
-    const destination = document.querySelector(data.destination);
-
-    componentElements.forEach(componentEl => {
-      insertElement(componentEl, destination, data.operation);
-    });
-  }
-
-  function insertElement(elementToInsert, destination, operation) {
-    if (operation === 'prepend') {
-      destination.insertBefore(elementToInsert, destination.childNodes[0]);
-    } else {
-      destination.appendChild(elementToInsert);
-    }
-  }
-
-  importWebComponents();
-
-  // Your custom JavaScript goes here
 })();

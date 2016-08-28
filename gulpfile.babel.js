@@ -197,8 +197,8 @@ gulp.task('default', ['clean'], cb =>
   runSequence(
     'styles',
     ['lint', 'html', 'scripts', 'images', 'copy'],
-    'generate-service-worker',
     'copy-vendor-scripts',
+    'generate-service-worker',
     cb
   )
 );
