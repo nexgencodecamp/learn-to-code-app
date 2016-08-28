@@ -110,8 +110,7 @@ gulp.task('scripts', () =>
       //       you need to explicitly list your scripts here in the right order
       //       to be correctly concatenated
       './app/scripts/main.js',
-      './app/scripts/components/**/*.js',
-      './app/scripts/vendor/**/*.js',
+      './app/scripts/components/**/*.js'
       // Other scripts
     ])
       .pipe($.newer('.tmp/scripts'))
@@ -220,6 +219,12 @@ gulp.task('copy-sw-scripts', () => {
     .pipe(gulp.dest('dist/scripts/sw'));
 });
 
+// Copy over the scripts that are used in importScripts as part of the generate-service-worker task.
+gulp.task('copy-vendor-scripts', () => {
+  return gulp.src(['scripts/vendor/**/*.js'])
+    .pipe(gulp.dest('dist/scripts/vendor'));
+});
+
 // See http://www.html5rocks.com/en/tutorials/service-worker/introduction/ for
 // an in-depth explanation of what service workers are and why you should care.
 // Generate a service worker file that will provide offline functionality for
@@ -235,9 +240,7 @@ gulp.task('generate-service-worker', ['copy-sw-scripts'], () => {
     // sw-toolbox.js needs to be listed first. It sets up methods used in runtime-caching.js.
     importScripts: [
       'scripts/sw/sw-toolbox.js',
-      'scripts/sw/runtime-caching.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.min.js',
-      'https://code.getmdl.io/1.1.3/material.min.js'
+      'scripts/sw/runtime-caching.js'
     ],
     staticFileGlobs: [
       // Add/remove glob patterns to match your directory setup.

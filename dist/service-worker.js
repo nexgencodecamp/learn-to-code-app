@@ -27,11 +27,11 @@
 
 
 
-importScripts("scripts/sw/sw-toolbox.js","scripts/sw/runtime-caching.js","https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.min.js","https://code.getmdl.io/1.1.3/material.min.js");
+importScripts("scripts/sw/sw-toolbox.js","scripts/sw/runtime-caching.js");
 
 
 /* eslint-disable quotes, comma-spacing */
-var PrecacheConfig = [["basic.html","e62dbac94d58b754a6fbbf84cf4644ef"],["components/aboutApp.html","0fb86dfcdeb7a839085e45dea09fa8b2"],["components/codingWindow.html","c28d37d21a4e661a7e34954d92873e9a"],["components/footer.html","ed4fbbd08c8ec2c2ddea9981ffd57bb9"],["components/header.html","3d528d5069e43704bef730c1fa44cf29"],["images/hamburger.svg","d2cb0dda3e8313b990e8dcf5e25d2d0f"],["images/touch/apple-touch-icon.png","7326f54bfe6776293f08b34c3a5fde7b"],["images/touch/chrome-touch-icon-192x192.png","571f134f59f14a6d298ddd66c015b293"],["images/touch/icon-128x128.png","7c46d686765c49b813ac5eb34fabf712"],["images/touch/ms-touch-icon-144x144-precomposed.png","452d90b250d6f41a0c8f9db729113ffd"],["index.html","50f3fe22bad24c8ec4cd715b14238dd8"],["manifest.json","30d402e280a04e6fe03b32da34c70890"],["scripts/main.min.js","62175e8b86a5c63584b7b4e96ece7a51"],["scripts/sw/runtime-caching.js","e3e34dcb62b5d62453b9215961585488"],["scripts/sw/sw-toolbox.js","66531e5962e4dccb0526a2b4cd6364a4"],["styles/main.css","dfcffddb96632bedc2ca8c6f6f438e6a"]];
+var PrecacheConfig = [["basic.html","e62dbac94d58b754a6fbbf84cf4644ef"],["components/aboutApp.html","0fb86dfcdeb7a839085e45dea09fa8b2"],["components/codingWindow.html","c28d37d21a4e661a7e34954d92873e9a"],["components/footer.html","ed4fbbd08c8ec2c2ddea9981ffd57bb9"],["components/header.html","3d528d5069e43704bef730c1fa44cf29"],["images/hamburger.svg","d2cb0dda3e8313b990e8dcf5e25d2d0f"],["images/touch/apple-touch-icon.png","7326f54bfe6776293f08b34c3a5fde7b"],["images/touch/chrome-touch-icon-192x192.png","571f134f59f14a6d298ddd66c015b293"],["images/touch/icon-128x128.png","7c46d686765c49b813ac5eb34fabf712"],["images/touch/ms-touch-icon-144x144-precomposed.png","452d90b250d6f41a0c8f9db729113ffd"],["index.html","50f3fe22bad24c8ec4cd715b14238dd8"],["manifest.json","30d402e280a04e6fe03b32da34c70890"],["scripts/main.min.js","1130e5dc71dfbb4d358b6c7c6fb0e893"],["scripts/sw/runtime-caching.js","e3e34dcb62b5d62453b9215961585488"],["scripts/sw/sw-toolbox.js","66531e5962e4dccb0526a2b4cd6364a4"],["styles/codemirror.min.css","3faf456b891046e7afde5ceefc860af1"],["styles/main.css","dfcffddb96632bedc2ca8c6f6f438e6a"],["styles/material.indigo-pink.min.css","08828b79dc570074599bbca463d03c7e"]];
 /* eslint-enable quotes, comma-spacing */
 var CacheNamePrefix = 'sw-precache-v1-web-starter-kit-' + (self.registration ? self.registration.scope : '') + '-';
 
