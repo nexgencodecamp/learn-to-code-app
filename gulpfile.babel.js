@@ -177,7 +177,7 @@ gulp.task('serve', ['scripts', 'styles'], () => {
 });
 
 // Build and serve the output from the dist build
-gulp.task('serve:dist', ['default'], () =>
+gulp.task('serve:dist', ['scripts', 'copy-vendor-scripts'], () =>
   browserSync({
     notify: false,
     logPrefix: 'WSK',
@@ -198,6 +198,7 @@ gulp.task('default', ['clean'], cb =>
     'styles',
     ['lint', 'html', 'scripts', 'images', 'copy'],
     'generate-service-worker',
+    'copy-vendor-scripts',
     cb
   )
 );
@@ -221,7 +222,7 @@ gulp.task('copy-sw-scripts', () => {
 
 // Copy over the scripts that are used in importScripts as part of the generate-service-worker task.
 gulp.task('copy-vendor-scripts', () => {
-  return gulp.src(['scripts/vendor/**/*.js'])
+  return gulp.src(['app/scripts/vendor/**/*.js'])
     .pipe(gulp.dest('dist/scripts/vendor'));
 });
 
