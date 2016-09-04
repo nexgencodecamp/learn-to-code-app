@@ -33,6 +33,7 @@ import swPrecache from 'sw-precache';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
 import pkg from './package.json';
+import webpack from 'webpack-stream';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -105,24 +106,33 @@ gulp.task('styles', () => {
 // to enable ES2015 support remove the line `"only": "gulpfile.babel.js",` in the
 // `.babelrc` file.
 gulp.task('scripts', () =>
-    gulp.src([
-      // Note: Since we are not using useref in the scripts build pipeline,
-      //       you need to explicitly list your scripts here in the right order
-      //       to be correctly concatenated
-      './app/scripts/main.js',
-      './app/scripts/components/**/*.js'
-      // Other scripts
-    ])
-      .pipe($.newer('.tmp/scripts'))
-      .pipe($.sourcemaps.init())
-      .pipe($.babel())
-      .pipe($.sourcemaps.write())
-      .pipe(gulp.dest('.tmp/scripts'))
-      .pipe($.concat('main.min.js'))
+    gulp
+      .src([
+        // Note: Since we are not using useref in the scripts build pipeline,
+        //       you need to explicitly list your scripts here in the right order
+        //       to be correctly concatenated
+        './app/scripts/main.js',
+        './app/scripts/components/**/*.js'
+        // Other scripts
+      ])
+      .pipe(webpack({
+          module: {
+              loaders: [{
+                  test: /.jsx?$/,
+                  loader: 'babel-loader',
+                  exclude: /node_modules/,
+                  query: {
+                      presets: ['es2015', 'stage-0']
+                  }
+              }]
+          },
+          output: {
+              filename: 'main.min.js'
+          }
+      }))
       .pipe($.uglify({preserveComments: 'some'}))
       // Output files
       .pipe($.size({title: 'scripts'}))
-      .pipe($.sourcemaps.write('.'))
       .pipe(gulp.dest('dist/scripts'))
 );
 
