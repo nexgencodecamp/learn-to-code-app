@@ -1,19 +1,11 @@
-let listeners = []; 
-
-function subscribeToURLChanges(prefix, callback) {
-  listeners.push({
-    prefix,
-    callback
-  });
-}
-
-(function () {
+export default (function() {
+  this.listeners = [];
 
   function hideAllOtherComponents() {
     const tabs = document.querySelectorAll('.mdl-layout__tab-panel');
-    [].forEach.call(tabs, (tab) => {
+    [].forEach.call(tabs, tab => {
       tab.style.display = 'none';
-      tab.classList.remove('is-active')
+      tab.classList.remove('is-active');
     });
   }
 
@@ -31,7 +23,7 @@ function subscribeToURLChanges(prefix, callback) {
   function notifyEventListeners() {
     const newActiveComponent = window.location.hash.split('/')[0];
     const extraParams = window.location.hash.split('/')[1];
-    listeners.forEach((listener) => {
+    this.listeners.forEach(listener => {
       if (listener.prefix === newActiveComponent) {
         listener.callback(extraParams);
       }
@@ -48,11 +40,21 @@ function subscribeToURLChanges(prefix, callback) {
     container.classList.add('mdl-layout--fixed-drawer');
   }
 
-  window.addEventListener('hashchange', (event) => {
+  function subscribeToURLChanges(prefix, callback) {
+    this.listeners.push({
+      prefix,
+      callback
+    });
+  }
+
+  window.addEventListener('hashchange', () => {
     removeDrawer();
     hideAllOtherComponents();
     showActiveComponent();
     notifyEventListeners();
   });
 
+  return {
+    subscribeToURLChanges
+  };
 })();

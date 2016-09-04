@@ -1,3 +1,6 @@
+import {subscribeToURLChanges} from '../utils/router';
+import waitForComponentToLoad from '../utils/waitForComponentToLoad';
+
 (function() {
   let codeMirrorInstances = [];
 
@@ -12,18 +15,19 @@
     subscribeToURLChanges('#startCoding', courseChanged);
   }
 
-  function courseChanged(newCourse) {
-    //todo
+  function courseChanged() {
+    // todo
   }
 
   /**
-   * When the "Goto next" button is clicked, it will record the 
-   * student's progress and move them to the next section 
+   * When the "Goto next" button is clicked, it will record the
+   * student's progress and move them to the next section
    */
   function setUpGoToNextButton() {
     var gotoNextButton = document.querySelector('#gotoNext');
-    gotoNextButton.addEventListener('click', function () {
-      document.querySelector('#topic2').innerHTML += ' <i class="material-icons">done</i>';
+    gotoNextButton.addEventListener('click', () => {
+      const tickIcon = ' <i class="material-icons">done</i>';
+      document.querySelector('#topic2').innerHTML += tickIcon;
     });
   }
 
@@ -91,5 +95,4 @@
   }
 
   waitForComponentToLoad().then(setUpPage);
-
 })();
