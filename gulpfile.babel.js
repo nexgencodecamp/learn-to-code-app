@@ -177,7 +177,7 @@ gulp.task('serve', ['scripts', 'styles'], () => {
 });
 
 // Build and serve the output from the dist build
-gulp.task('serve:dist', ['scripts', 'copy-vendor-scripts'], () =>
+gulp.task('serve:dist', ['scripts', 'html', 'styles', 'copy-vendor-scripts'], () => {
   browserSync({
     notify: false,
     logPrefix: 'WSK',
@@ -189,8 +189,13 @@ gulp.task('serve:dist', ['scripts', 'copy-vendor-scripts'], () =>
     // https: true,
     server: 'dist',
     port: 3001
-  })
-);
+  });
+
+  gulp.watch(['app/**/*.html'], reload);
+  gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
+  gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts', reload]);
+  gulp.watch(['app/images/**/*'], reload);
+});
 
 // Build production files, the default task
 gulp.task('default', ['clean'], cb =>

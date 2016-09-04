@@ -1,25 +1,39 @@
 <script src="../scripts/vendor/codemirror.min.js"></script>
-<div class="mdl-layout__tab-panel is-active" id="startCoding">
-  <button id="runCode" class="mdl-button mdl-js-button mdl-button--raised vertical-center">
-    <i class="material-icons">play_circle_filled</i> Run!
-  </button>
-  <div class="mdl-grid">
-    <div class="mdl-cell">
-      <h3>HTML</h3>
-      <textarea id="htmlCodeMirror" data-code-mirror-text-area class="hidden"></textarea>
-    </div>
-    <div class="mdl-cell">
-      <h3>Javascript</h3>
-      <textarea id="javascriptCodeMirror" data-code-mirror-text-area class="hidden"></textarea>
-    </div>
-    <div class="mdl-cell">
-      <h3>CSS</h3>
-      <textarea id="cssCodeMirror" data-code-mirror-text-area class="hidden"></textarea>
-    </div>
+<div class="mdl-layout__tab-panel" id="startCoding">
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Course Content</span>
+    <nav class="mdl-navigation">
+      <span class="drawer-sub-title">Section One</span>
+      <a class="mdl-navigation__link" href="">Topic 1
+        <i class="material-icons">done</i>
+      </a>
+      <a class="mdl-navigation__link" href="" id="topic2">Topic 2</a>
+      <a class="mdl-navigation__link" href="">Topic 3</a>
+      <a class="mdl-navigation__link" href="">Topic 4</a>
+    </nav>
   </div>
-  <div id="output">
-    <h3>Output</h3>
-    <output id="htmlOutput">
-    </output>
-  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <div id="sectionContent">
+        You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!
+      </div>
+      <div class="mdl-grid">
+        <div class="mdl-cell">
+          <h3>Javascript</h3>
+          <textarea id="javascriptCodeMirror" data-code-mirror-text-area class="hidden"></textarea>
+        </div>
+      </div>
+      <button id="runCode" class="mdl-button mdl-js-button mdl-button--raised vertical-center">
+        <i class="material-icons">play_circle_filled</i> Run Code!
+      </button>
+      <div id="output">
+        <h3>Output</h3>
+        <output id="htmlOutput">
+        </output>
+      </div>
+      <button id="gotoNext" class="mdl-button mdl-js-button mdl-button--raised vertical-center">
+        <i class="material-icons">check_circle</i> Goto Next
+      </button>
+    </div>
+  </main>
 </div>

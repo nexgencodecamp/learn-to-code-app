@@ -220,3 +220,7 @@ html, body {
   display: flex;
   align-items: center;
 }
+
+.drawer-sub-title {
+  margin-left: 20px;
+}

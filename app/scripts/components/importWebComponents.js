@@ -10,6 +10,10 @@
         operation: 'prepend'
       },
       {
+        idOfImportLink: 'component-chooseCourse',
+        destination: '#content'
+      },
+      {
         idOfImportLink: 'component-codingWindow',
         destination: '#content'
       },

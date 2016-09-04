@@ -1,0 +1,16 @@
+<script src="../scripts/vendor/mdl-select.min.js"></script>
+<link rel="stylesheet" href="../styles/getmdl-select.min.css">
+<div class="mdl-layout__tab-panel is-active" id="chooseCourseDropdown">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
+     <input class="mdl-textfield__input" value="Course 1" type="text" id="chosenCourse" readonly tabIndex="-1"/>
+     <label class="mdl-textfield__label" for="chosenCourse">Choose a Course</label>
+     <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="chosenCourse">
+       <li class="mdl-menu__item">Course 1</li>
+       <li class="mdl-menu__item">Course 2</li>
+     </ul>
+  </div>
+  <br>
+  <button id="chooseCourse" class="mdl-button mdl-js-button mdl-button--raised vertical-center">
+    <i class="material-icons">play_circle_filled</i> Start Course!
+  </button>
+</div>

@@ -8,6 +8,23 @@
   function setUpPage() {
     setUpCodeMirror();
     setUpRunButton();
+    setUpGoToNextButton();
+    subscribeToURLChanges('#startCoding', courseChanged);
+  }
+
+  function courseChanged(newCourse) {
+    //todo
+  }
+
+  /**
+   * When the "Goto next" button is clicked, it will record the 
+   * student's progress and move them to the next section 
+   */
+  function setUpGoToNextButton() {
+    var gotoNextButton = document.querySelector('#gotoNext');
+    gotoNextButton.addEventListener('click', function () {
+      document.querySelector('#topic2').innerHTML += ' <i class="material-icons">done</i>';
+    });
   }
 
   /**
@@ -17,8 +34,6 @@
   function setUpRunButton() {
     const playButton = document.querySelector('#runCode');
     playButton.addEventListener('click', () => {
-      addCSSCode();
-      addHTMLCode();
       addJSCode();
     });
   }
@@ -54,32 +69,6 @@
   }
 
   /**
-   * Adds the CSS code to the page as an inline style block. If
-   * there's already a pre-existing style tag, it replaces it.
-   */
-  function addCSSCode() {
-    const cssCode = findCorrespondingCodeMirrorInstance('cssCodeMirror');
-    const existingStyleTag = document.querySelector('#userAddedCSS');
-    const newStyleTag = document.createElement('style');
-
-    if (existingStyleTag) {
-      existingStyleTag.remove();
-    }
-
-    newStyleTag.appendChild(document.createTextNode(cssCode.getValue()));
-    document.body.appendChild(newStyleTag);
-  }
-
-  /**
-   * Updates the HTML in the output area with what the user supplied.
-   */
-  function addHTMLCode() {
-    const htmlCode = findCorrespondingCodeMirrorInstance('htmlCodeMirror');
-    const outputEl = document.querySelector('#htmlOutput');
-    outputEl.innerHTML = htmlCode.getValue();
-  }
-
-  /**
    * Replaces the three text areas (html/css/js code) with
    * code mirror instances
    */
@@ -101,7 +90,6 @@
     });
   }
 
-  // give importWebComponents time to do html imports
-  // todo: use mutation observer?
-  setTimeout(setUpPage, 800);
+  waitForComponentToLoad().then(setUpPage);
+
 })();
