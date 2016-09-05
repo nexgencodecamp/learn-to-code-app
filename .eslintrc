@@ -1,0 +1,25 @@
+{
+    "extends": "google",
+    "env": {
+      "browser": true
+    },
+    "rules": {
+        "object-curly-spacing": [2, "always"],
+        "react/jsx-uses-vars": 1
+    },
+    "plugins": [
+      "react"
+    ],
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "settings": {
+      "react": {
+        "createClass": "createClass", // Regex for Component Factory to use, default to "createClass"
+        "pragma": "React",  // Pragma to use, default to "React"
+      }
+    }
+}

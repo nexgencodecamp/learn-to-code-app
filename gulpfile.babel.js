@@ -112,7 +112,9 @@ gulp.task('scripts', () =>
         //       you need to explicitly list your scripts here in the right order
         //       to be correctly concatenated
         './app/scripts/main.js',
-        './app/scripts/components/**/*.js'
+        './app/scripts/utils/**/*.js',
+        './app/scripts/react/**/*.js',
+        './app/scripts/react/**/*.jsx'
         // Other scripts
       ])
       .pipe(webpack({
@@ -120,17 +122,21 @@ gulp.task('scripts', () =>
               loaders: [{
                   test: /.jsx?$/,
                   loader: 'babel-loader',
-                  exclude: /node_modules/,
+                  exclude: ['/node_modules/', 'app/scripts/vendor/**/*.jsx?'],
                   query: {
-                      presets: ['es2015', 'stage-0']
+                      presets: ['es2015', 'stage-0', 'react'],
+                      plugins: ["transform-flow-strip-types"]
                   }
               }]
+          },
+          resolve: {
+            extensions: ['', '.js', '.jsx'],
           },
           output: {
               filename: 'main.min.js'
           }
       }))
-      .pipe($.uglify({preserveComments: 'some'}))
+      // .pipe($.uglify({preserveComments: 'some'}))
       // Output files
       .pipe($.size({title: 'scripts'}))
       .pipe(gulp.dest('dist/scripts'))
@@ -204,6 +210,7 @@ gulp.task('serve:dist', ['scripts', 'html', 'styles', 'copy-vendor-scripts'], ()
   gulp.watch(['app/**/*.html'], reload);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
   gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts', reload]);
+  gulp.watch(['app/scripts/**/*.jsx'], ['lint', 'scripts', reload]);
   gulp.watch(['app/images/**/*'], reload);
 });
 

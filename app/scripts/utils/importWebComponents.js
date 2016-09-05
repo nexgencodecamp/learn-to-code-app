@@ -9,11 +9,7 @@ function importWebComponents() {
       operation: 'prepend'
     },
     {
-      idOfImportLink: 'component-chooseCourse',
-      destination: '#content'
-    },
-    {
-      idOfImportLink: 'component-codingWindow',
+      idOfImportLink: 'component-reactContainer',
       destination: '#content'
     },
     {
