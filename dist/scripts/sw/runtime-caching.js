@@ -30,4 +30,7 @@
   global.toolbox.router.get('/(.*)', global.toolbox.fastest, {
     origin: /\.(?:googleapis|gstatic)\.com$/
   });
+
+  // cache fonts hosted on google CDN
+  global.toolbox.router.get(/googleapis/, global.toolbox.fastest);
 })(self);
