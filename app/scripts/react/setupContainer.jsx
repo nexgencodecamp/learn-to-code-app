@@ -11,7 +11,9 @@ import BaseComponent from './components/BaseComponent';
 function setupContainer() {
   const container = document.querySelector('#reactContainer');
   const appStore = createStore({
-    route: 'login',
+    route: {
+      route: 'login'
+    },
     courseProgress: {}
   });
   ReactDOM.render(

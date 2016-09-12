@@ -8,10 +8,9 @@ class ChooseCourseComponent extends React.Component {
     this.handleChooseCourse = this.handleChooseCourse.bind(this);
   }
 
-  handleChooseCourse() {
-    debugger;
+  handleChooseCourse(e) {
     const chosenCourse = document.querySelector('#chosenCourse').value;
-    this.props.changeRoute('startCoding', [chosenCourse]);
+    this.props.changeRoute('startCourse', [chosenCourse]);
     e.preventDefault();
   }
 
@@ -30,7 +29,7 @@ class ChooseCourseComponent extends React.Component {
              </ul>
           </div>
           <br/>
-          <button id="chooseCourse" className="mdl-button mdl-js-button mdl-button--raised vertical-center">
+          <button onClick={this.handleChooseCourse} id="chooseCourse" className="mdl-button mdl-js-button mdl-button--raised vertical-center">
             <i className="material-icons">play_circle_filled</i> Start Course!
           </button>
         </div>

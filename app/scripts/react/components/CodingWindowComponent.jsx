@@ -77,40 +77,40 @@ class CodingWindowComponent extends React.Component {
     this.setUpCodeMirror();
 
     return (
-      <div class="mdl-layout__tab-panel" id="startCoding">
-        <div class="mdl-layout__drawer">
-          <span class="mdl-layout-title">Course Content</span>
-          <nav class="mdl-navigation">
-            <span class="drawer-sub-title">Section One</span>
-            <a class="mdl-navigation__link" href="">Topic 1
-              <i class="material-icons">done</i>
+      <div className="mdl-layout__tab-panel" id="startCoding">
+        <div className="mdl-layout__drawer">
+          <span className="mdl-layout-title">Course Content</span>
+          <nav className="mdl-navigation">
+            <span className="drawer-sub-title">Section One</span>
+            <a className="mdl-navigation__link" href="">Topic 1
+              <i className="material-icons">done</i>
             </a>
-            <a class="mdl-navigation__link" href="" id="topic2">Topic 2</a>
-            <a class="mdl-navigation__link" href="">Topic 3</a>
-            <a class="mdl-navigation__link" href="">Topic 4</a>
+            <a className="mdl-navigation__link" href="" id="topic2">Topic 2</a>
+            <a className="mdl-navigation__link" href="">Topic 3</a>
+            <a className="mdl-navigation__link" href="">Topic 4</a>
           </nav>
         </div>
-        <main class="mdl-layout__content">
-          <div class="page-content">
+        <main className="mdl-layout__content">
+          <div className="page-content">
             <div id="sectionContent">
               You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!
             </div>
-            <div class="mdl-grid">
-              <div class="mdl-cell">
+            <div className="mdl-grid">
+              <div className="mdl-cell">
                 <h3>Javascript</h3>
-                <textarea id="javascriptCodeMirror" data-code-mirror-text-area class="hidden"></textarea>
+                <textarea id="javascriptCodeMirror" data-code-mirror-text-area className="hidden"></textarea>
               </div>
             </div>
-            <button id="runCode" class="mdl-button mdl-js-button mdl-button--raised vertical-center">
-              <i class="material-icons">play_circle_filled</i> Run Code!
+            <button id="runCode" className="mdl-button mdl-js-button mdl-button--raised vertical-center">
+              <i className="material-icons">play_circle_filled</i> Run Code!
             </button>
             <div id="output">
               <h3>Output</h3>
               <output id="htmlOutput">
               </output>
             </div>
-            <button id="gotoNext" class="mdl-button mdl-js-button mdl-button--raised vertical-center">
-              <i class="material-icons">check_circle</i> Goto Next
+            <button id="gotoNext" className="mdl-button mdl-js-button mdl-button--raised vertical-center">
+              <i className="material-icons">check_circle</i> Goto Next
             </button>
           </div>
         </main>
