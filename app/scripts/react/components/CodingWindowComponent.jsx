@@ -2,6 +2,7 @@
 
 import React from 'react';
 import CodeMirror from '../../vendor/codemirror.min.js';
+import CourseTableOfContentsComponent from './CourseTableOfContentsComponent';
 
 class CodingWindowComponent extends React.Component {
 
@@ -90,25 +91,22 @@ class CodingWindowComponent extends React.Component {
     this.addDrawer();
   }
 
+  getCourseTableOfContents() {
+    return React.createElement(CourseTableOfContentsComponent);
+  }
+
+  getSectionContent() {
+    return `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!`;
+  }
+
   render() {
     return (
       <div className="mdl-layout__tab-panel is-active" id="startCoding">
-        <div className="mdl-layout__drawer">
-          <span className="mdl-layout-title">Course Content</span>
-          <nav className="mdl-navigation">
-            <span className="drawer-sub-title">Section One</span>
-            <a className="mdl-navigation__link" href="">Topic 1
-              <i className="material-icons">done</i>
-            </a>
-            <a className="mdl-navigation__link" href="" id="topic2">Topic 2</a>
-            <a className="mdl-navigation__link" href="">Topic 3</a>
-            <a className="mdl-navigation__link" href="">Topic 4</a>
-          </nav>
-        </div>
+        {this.getCourseTableOfContents()}
         <main className="mdl-layout__content">
           <div className="page-content">
             <div id="sectionContent">
-              You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!
+              {this.getSectionContent()}
             </div>
             <div className="mdl-grid">
               <div className="mdl-cell">
