@@ -9,7 +9,7 @@ class ChooseCourseComponent extends React.Component {
   }
 
   handleChooseCourse(e) {
-    const chosenCourse = document.querySelector('#chosenCourse').value;
+    const chosenCourse = this.props.chosenCourse;
     this.props.changeRoute('startCourse', [chosenCourse]);
     e.preventDefault();
   }
@@ -21,7 +21,7 @@ class ChooseCourseComponent extends React.Component {
         <link rel="stylesheet" href="../styles/getmdl-select.min.css" />
         <div className="mdl-layout__tab-panel is-active" id="chooseCourseDropdown">
           <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-             <input className="mdl-textfield__input" value="Course 1" type="text" id="chosenCourse" readOnly tabIndex="-1"/>
+             <input className="mdl-textfield__input" value={this.props.chosenCourse} type="text" id="chosenCourse" tabIndex="-1"/>
              <label className="mdl-textfield__label" htmlFor="chosenCourse">Choose a Course</label>
              <ul className="mdl-menu mdl-menu--bottom-left mdl-js-menu" htmlFor="chosenCourse">
                <li className="mdl-menu__item">Course 1</li>

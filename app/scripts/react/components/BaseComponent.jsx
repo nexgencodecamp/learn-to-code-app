@@ -20,7 +20,8 @@ class BaseComponent extends React.Component {
       });
     } else if (route.route === 'startCourse') {
       return React.createElement(CodingWindowComponent, {
-        changeRoute: this.props.changeRoute
+        changeRoute: this.props.changeRoute,
+        progress: route.params
       });
     } else if (route.route === 'login') {
       return React.createElement(LoginComponent, {

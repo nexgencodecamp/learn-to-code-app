@@ -73,11 +73,13 @@ class CodingWindowComponent extends React.Component {
     });
   }
 
-  render() {
+  componentDidMount() {
     this.setUpCodeMirror();
+  }
 
+  render() {
     return (
-      <div className="mdl-layout__tab-panel" id="startCoding">
+      <div className="mdl-layout__tab-panel is-active" id="startCoding">
         <div className="mdl-layout__drawer">
           <span className="mdl-layout-title">Course Content</span>
           <nav className="mdl-navigation">
