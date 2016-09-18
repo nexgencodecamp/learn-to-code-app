@@ -1,12 +1,18 @@
 export default {
-  // when user switches between adding lead/contact
-  completeSection(course, section) {
+  completeTopic(courseID, sectionID, topicID) {
     return {
-      type: 'COMPLETE_SECTION',
+      type: 'COMPLETE_TOPIC',
       value: {
-        course,
-        section
+        courseID,
+        sectionID,
+        topicID
       }
+    };
+  },
+  startCourse(courseID) {
+    return {
+      type: 'START_COURSE',
+      value: courseID
     };
   }
 };

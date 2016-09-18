@@ -5,7 +5,7 @@ import courseProgressReducer from './reducers/courseProgressReducer.js';
 
 const reducer = combineReducers({
   route: routeReducer,
-  courseProgress: courseProgressReducer
+  courseData: courseProgressReducer
 });
 
 export default function storeCreator(initalState) {

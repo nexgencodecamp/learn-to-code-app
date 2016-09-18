@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import createStore from './appStore';
 import waitForComponentToLoad from '../utils/waitForComponentToLoad';
 import BaseComponent from './components/BaseComponent';
+import CourseData from './data/courseData';
 
 /**
  * Sets up the React container
@@ -14,7 +15,7 @@ function setupContainer() {
     route: {
       route: 'login'
     },
-    courseProgress: {}
+    courseData: CourseData
   });
   ReactDOM.render(
     <Provider store={appStore}>

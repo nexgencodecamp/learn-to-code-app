@@ -1,18 +1,48 @@
 import React from 'react';
 
 class CourseTableOfContentsComponent extends React.Component {
+
+  getCourseDetails() {
+    return this.props.courseData.currentCourse.sections.map(this.getSectionDetails.bind(this));
+  }
+
+  getSectionDetails(section) {
+    return (
+      <div key={section.sectionName}>
+        <span className="drawer-sub-title">
+          {section.sectionName}
+          {this.getDoneIcon(section.isComplete)}
+        </span>
+        {this.getTopicDetailsForSection(section)}
+      </div>
+    );
+  }
+
+  getDoneIcon(isComplete) {
+    if (isComplete) {
+      return (<i className="material-icons">done</i>);
+    }
+  }
+
+  getTopicDetailsForSection(section) {
+    return section.topics.map(this.getTopicMarkup.bind(this));
+  }
+
+  getTopicMarkup(topic) {
+    return (
+      <a className="mdl-navigation__link" href="" key={topic.topicName}>
+        {topic.topicName}
+        {this.getDoneIcon(topic.isComplete)}
+      </a>
+    );
+  }
+
   render() {
     return (
       <div className="mdl-layout__drawer">
-        <span className="mdl-layout-title">Course Content</span>
+        <span className="mdl-layout-title">{this.props.courseData.currentCourse.courseName}</span>
         <nav className="mdl-navigation">
-          <span className="drawer-sub-title">Section One</span>
-          <a className="mdl-navigation__link" href="">Topic 1
-            <i className="material-icons">done</i>
-          </a>
-          <a className="mdl-navigation__link" href="" id="topic2">Topic 2</a>
-          <a className="mdl-navigation__link" href="">Topic 3</a>
-          <a className="mdl-navigation__link" href="">Topic 4</a>
+          {this.getCourseDetails()}
         </nav>
       </div>
     );
