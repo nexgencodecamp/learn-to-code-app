@@ -12,6 +12,7 @@ class CodingWindowComponent extends React.Component {
   }
 
   handleRunCode() {
+    // todo: should properly sandbox this
     this.addJSCode();
   }
 
@@ -73,8 +74,20 @@ class CodingWindowComponent extends React.Component {
     });
   }
 
+  removeDrawer() {
+    const container = document.querySelector('#container');
+    container.classList.remove('mdl-layout--fixed-drawer');
+  }
+
+  addDrawer() {
+    // todo - this should be controlled by router
+    const container = document.querySelector('#container');
+    container.classList.add('mdl-layout--fixed-drawer');
+  }
+
   componentDidMount() {
     this.setUpCodeMirror();
+    this.addDrawer();
   }
 
   render() {
