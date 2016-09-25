@@ -85,7 +85,6 @@ function getNewStateAfterChangingTopic(state, action) {
   const relevantCourse = getCourseDataFromID(newState, parseInt(action.value.courseID));
   const relevantSection = getSectionDataFromID(relevantCourse, parseInt(action.value.sectionID));
   const relevantTopic = getTopicDataFromID(relevantSection, parseInt(action.value.topicID));
-debugger;
   return Object.assign({}, state, {
     currentCourse: relevantCourse,
     currentSection: relevantSection,
