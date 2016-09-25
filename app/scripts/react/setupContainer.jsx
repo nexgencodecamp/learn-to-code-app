@@ -7,7 +7,7 @@ import BaseComponent from './components/BaseComponent';
 import CourseData from './data/courseData';
 import { browserHistory } from 'react-router';
 
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 
 /**
  * Sets up the React container
@@ -15,8 +15,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 function setupContainer() {
   const container = document.querySelector('#reactContainer');
   const appStore = createStore({
-    courseData: CourseData,
-    routing: routerReducer
+    courseData: CourseData
   });
   const history = syncHistoryWithStore(browserHistory, appStore);
 
