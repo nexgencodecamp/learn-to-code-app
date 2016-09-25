@@ -121,15 +121,18 @@ gulp.task('scripts', () =>
       ])
       .pipe(webpack({
           module: {
-              loaders: [{
-                  test: /.jsx?$/,
-                  loader: 'babel-loader',
-                  exclude: ['/node_modules/', 'app/scripts/vendor/**/*.jsx?'],
-                  query: {
-                      presets: ['es2015', 'stage-0', 'react'],
-                      plugins: ["transform-flow-strip-types"]
-                  }
-              }]
+              loaders: [
+                {
+                    test: /.jsx?$/,
+                    loader: 'babel-loader',
+                    exclude: ['/node_modules/', 'app/scripts/vendor/**/*.jsx?'],
+                    query: {
+                        presets: ['es2015', 'stage-0', 'react'],
+                        plugins: ["transform-flow-strip-types"]
+                    }
+                },
+                { test: /\.css$/, loader: "style-loader!css-loader" }
+              ]
           },
           resolve: {
             extensions: ['', '.js', '.jsx'],

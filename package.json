@@ -9,6 +9,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "browser-sync": "^2.9.0",
+    "css-loader": "^0.23.1",
     "del": "^2.0.2",
     "eslint": "^3.2.2",
     "eslint-config-google": "0.x.0",
@@ -33,6 +34,7 @@
     "gulp-useref": "^3.0.0",
     "psi": "^2.0.2",
     "run-sequence": "^1.0.1",
+    "style-loader": "^0.13.1",
     "sw-precache": "^3.2.0",
     "sw-toolbox": "^3.0.1",
     "webpack-stream": "^3.2.0"
@@ -52,6 +54,7 @@
     "react-redux": "^4.4.5",
     "react-router": "2.x",
     "react-router-redux": "^4.0.5",
+    "react-select": "^0.9.1",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "webcomponents.js": "^0.7.22"

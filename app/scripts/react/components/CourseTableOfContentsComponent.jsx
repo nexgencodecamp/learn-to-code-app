@@ -42,7 +42,6 @@ class CourseTableOfContentsComponent extends React.Component {
     const linkPath = `/doCourse/${courseID}/${section.sectionID}/${topic.topicID}`;
     return (
       <Link to={linkPath} activeStyle={{ backgroundColor: '#e0e0e0' }} className="mdl-navigation__link" key={topic.topicID}>
-        New link
         {topic.topicName}
         {this.getDoneIcon(topic.isComplete)}
       </Link>

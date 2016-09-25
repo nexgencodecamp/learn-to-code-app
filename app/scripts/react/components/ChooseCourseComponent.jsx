@@ -2,6 +2,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import courseProgressActionCreator from '../actionCreators/courseProgress.js';
+import Select from 'react-select';
+// Be sure to include styles at some point, probably during your bootstrapping
+import 'react-select/dist/react-select.css';
 
 class ChooseCourseComponent extends React.Component {
 
@@ -9,6 +12,7 @@ class ChooseCourseComponent extends React.Component {
     super();
     this.handleChooseCourse = this.handleChooseCourse.bind(this);
     this.handleChangeCourse = this.handleChangeCourse.bind(this);
+    this.state = {};
   }
 
   static propTypes = {
@@ -19,10 +23,10 @@ class ChooseCourseComponent extends React.Component {
     router: React.PropTypes.object
   }
 
-  handleChangeCourse(e) {
+  handleChangeCourse(chosenCourse) {
     this.state = {
       // todo - need to properly set value of dropdown
-      chosenCourse: parseInt(e.target.value)
+      chosenCourse: chosenCourse
     };
   }
 
@@ -33,9 +37,10 @@ class ChooseCourseComponent extends React.Component {
   }
 
   getCourseList() {
-    return this.props.courseData.courses.map(course => (
-      <li key={`course-${course.courseName}`} className="mdl-menu__item">{course.courseName}</li>
-    ));
+    return this.props.courseData.courses.map((course, index) => ({
+      value: index + 1,
+      label: course.courseName
+    }));
   }
 
   render() {
@@ -46,13 +51,13 @@ class ChooseCourseComponent extends React.Component {
         <script src="../scripts/vendor/mdl-select.min.js"></script>
         <link rel="stylesheet" href="../styles/getmdl-select.min.css" />
         <div className="mdl-layout__tab-panel is-active" id="chooseCourseDropdown">
-          <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select">
-            <input className="mdl-textfield__input" onChange={this.handleChangeCourse} value={this.props.chosenCourse} type="text" id="chosenCourse" tabIndex="-1"/>
-            <label className="mdl-textfield__label" htmlFor="chosenCourse">Choose a Course</label>
-            <ul className="mdl-menu mdl-menu--bottom-left mdl-js-menu" htmlFor="chosenCourse">
-              {this.getCourseList()}
-            </ul>
-          </div>
+
+          <Select
+              name="form-field-name"
+              options={this.getCourseList()}
+              onChange={this.handleChangeCourse}
+          />
+
           <br/>
           <button onClick={this.handleChooseCourse} id="chooseCourse" className="mdl-button mdl-js-button mdl-button--raised vertical-center">
             <i className="material-icons">play_circle_filled</i> Start Course!
