@@ -5,6 +5,9 @@ import createStore from './appStore';
 import waitForComponentToLoad from '../utils/waitForComponentToLoad';
 import BaseComponent from './components/BaseComponent';
 import CourseData from './data/courseData';
+import { browserHistory } from 'react-router';
+
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 /**
  * Sets up the React container
@@ -12,18 +15,17 @@ import CourseData from './data/courseData';
 function setupContainer() {
   const container = document.querySelector('#reactContainer');
   const appStore = createStore({
-    route: {
-      route: 'login'
-    },
-    courseData: CourseData
+    courseData: CourseData,
+    routing: routerReducer
   });
+  const history = syncHistoryWithStore(browserHistory, appStore);
+
   ReactDOM.render(
     <Provider store={appStore}>
-      <BaseComponent />
+      <BaseComponent enhancedHistory={history} />
     </Provider>,
     container
   );
 }
 
-console.log('setupContainer');
 waitForComponentToLoad().then(setupContainer);
