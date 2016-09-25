@@ -1,5 +1,7 @@
 // @flow
 import React from 'react';
+import { connect } from 'react-redux';
+import courseProgressActionCreator from '../actionCreators/courseProgress.js';
 
 class ChooseCourseComponent extends React.Component {
 
@@ -10,7 +12,6 @@ class ChooseCourseComponent extends React.Component {
   }
 
   static propTypes = {
-    startCourse: React.PropTypes.func,
     courseData: React.PropTypes.object
   }
 
@@ -27,7 +28,6 @@ class ChooseCourseComponent extends React.Component {
 
   handleChooseCourse(e) {
     const chosenCourse = this.state.chosenCourse;
-    this.props.startCourse(chosenCourse);
     this.context.router.push(`/doCourse/${chosenCourse}`);
     e.preventDefault();
   }
@@ -63,4 +63,10 @@ class ChooseCourseComponent extends React.Component {
   }
 }
 
-export default ChooseCourseComponent;
+function mapStateToProps(state) {
+  return {
+    courseData: state.courseData
+  };
+}
+
+export default connect(mapStateToProps)(ChooseCourseComponent);

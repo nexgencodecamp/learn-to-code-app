@@ -115,7 +115,8 @@ gulp.task('scripts', () =>
         './app/scripts/main.js',
         './app/scripts/utils/**/*.js',
         './app/scripts/react/**/*.js',
-        './app/scripts/react/**/*.jsx'
+        './app/scripts/react/**/*.jsx',
+        '!app/scripts/vendor/**/*.jsx?'
         // Other scripts
       ])
       .pipe(webpack({
