@@ -1,11 +1,9 @@
 // @flow
 import React from 'react';
-import { connect } from 'react-redux';
 import { Router, Route, RouterContext, browserHistory, applyRouterMiddleware } from 'react-router';
 import ChooseCourseComponent from './ChooseCourseComponent';
 import DoCourseComponent from './DoCourseComponent';
 import LoginComponent from './LoginComponent';
-import courseProgressActionCreator from '../actionCreators/courseProgress.js';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 class BaseComponent extends React.Component {
@@ -49,7 +47,7 @@ class BaseComponent extends React.Component {
 
   render() {
     return (
-      <Router history={this.props.enhancedHistory} render={applyRouterMiddleware(this.useExtraProps())}>
+      <Router history={this.props.enhancedHistory} >
         <Route path='/login' component={LoginComponent} />
         <Route path='/chooseCourse' component={ChooseCourseComponent} />
         <Route path='/doCourse/:courseID' component={DoCourseComponent} />
@@ -60,27 +58,4 @@ class BaseComponent extends React.Component {
   }
 }
 
-
-
-function mapStateToProps(state) {
-  return {
-    route: state.route,
-    courseData: state.courseData
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    completeCourseTopic(courseID, sectionID, topicID) {
-      dispatch(courseProgressActionCreator.completeTopic(courseID, sectionID, topicID));
-    },
-    changeCourseTopic(courseID, sectionID, topicID) {
-      dispatch(courseProgressActionCreator.changeTopic(courseID, sectionID, topicID));
-    },
-    startCourse(courseID) {
-      dispatch(courseProgressActionCreator.startCourse(courseID));
-    }
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(BaseComponent);
+export default BaseComponent;

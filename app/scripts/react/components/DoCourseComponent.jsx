@@ -3,12 +3,13 @@
 import React from 'react';
 import CourseTableOfContentsComponent from './CourseTableOfContentsComponent';
 import JavascriptSandboxComponent from './JavascriptSandboxComponent';
+import { connect } from 'react-redux';
+import courseProgressActionCreator from '../actionCreators/courseProgress.js';
 
 class CodingWindowComponent extends React.Component {
 
   constructor(props) {
     super();
-    this.courseData = props.courseData;
     this.handleCompleteTopic = this.handleCompleteTopic.bind(this);
   }
 
@@ -22,9 +23,9 @@ class CodingWindowComponent extends React.Component {
   }
 
   handleCompleteTopic() {
-    const currentCourseID = this.courseData.currentCourse.courseID;
-    const currentSectionID = this.courseData.currentSection.sectionID;
-    const currentTopicID = this.courseData.currentTopic.topicID;
+    const currentCourseID = this.props.courseData.currentCourse.courseID;
+    const currentSectionID = this.props.courseData.currentSection.sectionID;
+    const currentTopicID = this.props.courseData.currentTopic.topicID;
 
     this.completeCourseTopic(currentCourseID, currentSectionID, currentTopicID);
   }
@@ -52,24 +53,13 @@ class CodingWindowComponent extends React.Component {
     // scroll to top
     // todo - this doesn't work
     document.querySelector('#startCoding').scrollTop = 0;
-    const params = this.props.params;
-    this.courseData = this.props.courseData;
-
-    if (params.topicID &&
-      (!this.courseData.currentTopic || params.topicID !== this.courseData.currentTopic.topicID)
-    ) {
-      // user has navigated to a different topic using the table of contents links
-      this.props.changeCourseTopic(
-        params.courseID,
-        params.sectionID,
-        params.topicID
-      );
-    }
   }
 
   getCourseTableOfContents() {
     return React.createElement(CourseTableOfContentsComponent, {
-      courseData: this.courseData
+      courseData: this.props.courseData,
+      changeCourseTopic: this.props.changeCourseTopic,
+      params: this.props.params
     });
   }
 
@@ -112,9 +102,9 @@ class CodingWindowComponent extends React.Component {
   }
 
   render() {
-    this.currentCourse = this.courseData.currentCourse;
-    this.currentSection = this.courseData.currentSection;
-    this.currentTopic = this.courseData.currentTopic;
+    this.currentCourse = this.props.courseData.currentCourse;
+    this.currentSection = this.props.courseData.currentSection;
+    this.currentTopic = this.props.courseData.currentTopic;
     this.completeCourseTopic = this.props.completeCourseTopic;
 
     return (
@@ -128,5 +118,38 @@ class CodingWindowComponent extends React.Component {
   }
 }
 
-export default CodingWindowComponent;
+function mapStateToProps(state) {
+  return {
+    courseData: state.courseData
+  };
+}
 
+function mapDispatchToProps(dispatch) {
+  return {
+    completeCourseTopic(courseID, sectionID, topicID) {
+      dispatch(courseProgressActionCreator.completeTopic(courseID, sectionID, topicID));
+    },
+    changeCourseTopic(courseID, sectionID, topicID) {
+      dispatch(courseProgressActionCreator.changeTopic(courseID, sectionID, topicID));
+    },
+    startCourse(courseID) {
+      dispatch(courseProgressActionCreator.startCourse(courseID));
+    }
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    completeCourseTopic(courseID, sectionID, topicID) {
+      dispatch(courseProgressActionCreator.completeTopic(courseID, sectionID, topicID));
+    },
+    changeCourseTopic(courseID, sectionID, topicID) {
+      dispatch(courseProgressActionCreator.changeTopic(courseID, sectionID, topicID));
+    },
+    startCourse(courseID) {
+      dispatch(courseProgressActionCreator.startCourse(courseID));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CodingWindowComponent);

@@ -7,6 +7,10 @@ class CourseTableOfContentsComponent extends React.Component {
     courseData: React.PropTypes.object
   }
 
+  constructor() {
+    super();
+  }
+
   getCourseDetails() {
     return this.props.courseData.currentCourse.sections.map(this.getSectionDetails.bind(this));
   }
