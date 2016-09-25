@@ -1,6 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class CourseTableOfContentsComponent extends React.Component {
+
+  static propTypes = {
+    courseData: React.PropTypes.object
+  }
 
   getCourseDetails() {
     return this.props.courseData.currentCourse.sections.map(this.getSectionDetails.bind(this));
@@ -25,19 +30,25 @@ class CourseTableOfContentsComponent extends React.Component {
   }
 
   getTopicDetailsForSection(section) {
-    return section.topics.map(this.getTopicMarkup.bind(this));
+    return section.topics.map(this.getTopicMarkup.bind(this, section));
   }
 
-  getTopicMarkup(topic) {
+  getTopicMarkup(section, topic) {
+    const courseID = this.props.courseData.currentCourse.courseID;
+    const linkPath = `/doCourse/${courseID}/${section.sectionID}/${topic.topicID}`;
     return (
-      <a className="mdl-navigation__link" href="" key={topic.topicName}>
+      <Link to={linkPath} activeStyle={{ backgroundColor: '#e0e0e0' }} className="mdl-navigation__link" key={topic.topicID}>
+        New link
         {topic.topicName}
         {this.getDoneIcon(topic.isComplete)}
-      </a>
+      </Link>
     );
   }
 
   render() {
+    if (!this.props.courseData.currentCourse) {
+      return null;
+    }
     return (
       <div className="mdl-layout__drawer">
         <span className="mdl-layout-title">{this.props.courseData.currentCourse.courseName}</span>

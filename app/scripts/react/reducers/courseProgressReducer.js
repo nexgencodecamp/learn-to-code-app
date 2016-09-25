@@ -10,6 +10,12 @@ export default function reducer(state = {}, action) {
       });
     case 'COMPLETE_TOPIC':
       return getNewStateAfterCompletingTopic(state, action);
+    case 'CHANGE_TOPIC':
+      return Object.assign({}, state, {
+        currentCourse: action.value.courseID,
+        currentSection: action.value.sectionID,
+        currentTopic: action.value.topicID
+      });
     default:
       return state;
   }

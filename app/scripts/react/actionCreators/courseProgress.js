@@ -9,6 +9,16 @@ export default {
       }
     };
   },
+  changeTopic(courseID, sectionID, topicID) {
+    return {
+      type: 'CHANGE_TOPIC',
+      value: {
+        courseID,
+        sectionID,
+        topicID
+      }
+    };
+  },
   startCourse(courseID) {
     return {
       type: 'START_COURSE',

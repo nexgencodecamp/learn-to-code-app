@@ -9,6 +9,15 @@ class ChooseCourseComponent extends React.Component {
     this.handleChangeCourse = this.handleChangeCourse.bind(this);
   }
 
+  static propTypes = {
+    startCourse: React.PropTypes.func,
+    courseData: React.PropTypes.object
+  }
+
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
   handleChangeCourse(e) {
     this.state = {
       // todo - need to properly set value of dropdown
@@ -19,6 +28,7 @@ class ChooseCourseComponent extends React.Component {
   handleChooseCourse(e) {
     const chosenCourse = this.state.chosenCourse;
     this.props.startCourse(chosenCourse);
+    this.context.router.push(`/doCourse/${chosenCourse}`);
     e.preventDefault();
   }
 
@@ -52,10 +62,5 @@ class ChooseCourseComponent extends React.Component {
     );
   }
 }
-
-ChooseCourseComponent.propTypes = {
-  startCourse: React.PropTypes.func,
-  courseData: React.PropTypes.object
-};
 
 export default ChooseCourseComponent;

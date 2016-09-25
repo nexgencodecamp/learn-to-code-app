@@ -34,6 +34,7 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import {output as pagespeed} from 'psi';
 import pkg from './package.json';
 import webpack from 'webpack-stream';
+import historyApiFallback from 'connect-history-api-fallback';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -204,7 +205,8 @@ gulp.task('serve:dist', ['scripts', 'html', 'styles', 'copy-vendor-scripts'], ()
     //       will present a certificate warning in the browser.
     // https: true,
     server: 'dist',
-    port: 3001
+    port: 3001,
+    middleware: [ historyApiFallback() ]
   });
 
   gulp.watch(['app/**/*.html'], reload);

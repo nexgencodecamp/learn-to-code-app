@@ -1,11 +1,12 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
+import { Router, Route, RouterContext, browserHistory, applyRouterMiddleware } from 'react-router';
 import ChooseCourseComponent from './ChooseCourseComponent';
 import DoCourseComponent from './DoCourseComponent';
 import LoginComponent from './LoginComponent';
-import changeRouteActionCreator from '../actionCreators/changeRoute.js';
 import courseProgressActionCreator from '../actionCreators/courseProgress.js';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 class BaseComponent extends React.Component {
 
@@ -13,36 +14,53 @@ class BaseComponent extends React.Component {
     super();
   }
 
-  showRoutedComponent() {
-    // todo change to react router
-    const route = this.props.route;
-    if (route.route === 'chooseCourse') {
-      return React.createElement(ChooseCourseComponent, {
-        startCourse: this.props.startCourse,
-        courseData: this.props.courseData
-      });
-    } else if (route.route === 'startCourse') {
-      return React.createElement(DoCourseComponent, {
-        changeRoute: this.props.changeRoute,
-        courseProgressData: route.params,
-        courseData: this.props.courseData,
-        completeCourseTopic: this.props.completeCourseTopic
-      });
-    } else if (route.route === 'login') {
-      return React.createElement(LoginComponent, {
-        changeRoute: this.props.changeRoute
-      });
-    }
+  getRouteData() {
+    return {
+      path: '/',
+      component: LoginComponent,
+      childRoutes: [
+          { path: '/login', component: LoginComponent },
+          {
+              path: '/chooseCourse',
+              component: ChooseCourseComponent,
+              courseData: this.props.courseData,
+              startCourse: this.props.startCourse
+          },
+          {
+              path: '/doCourse/:courseID',
+              component: DoCourseComponent,
+              courseData: this.props.courseData
+          },
+          {
+              path: '/doCourse/:courseID/:sectionID/:topicID',
+              component: DoCourseComponent,
+              courseData: this.props.courseData,
+              completeCourseTopic: this.props.completeCourseTopic
+          }
+      ]
+    };
+  }
+
+  useExtraProps() {
+    return {
+      renderRouteComponent: child => React.cloneElement(child, this.props)
+    };
   }
 
   render() {
     return (
-      <div>
-        {this.showRoutedComponent()}
-      </div>
+      <Router history={this.props.enhancedHistory} render={applyRouterMiddleware(this.useExtraProps())}>
+        <Route path='/login' component={LoginComponent} />
+        <Route path='/chooseCourse' component={ChooseCourseComponent} />
+        <Route path='/doCourse/:courseID' component={DoCourseComponent} />
+        <Route path='/doCourse/:courseID/:sectionID/:topicID' component={DoCourseComponent} />
+        <Route path='/' component={LoginComponent} />
+      </Router>
     );
   }
 }
+
+
 
 function mapStateToProps(state) {
   return {
@@ -53,11 +71,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    changeRoute(route, routeParams) {
-      dispatch(changeRouteActionCreator.changeRoute(route, routeParams));
-    },
     completeCourseTopic(courseID, sectionID, topicID) {
       dispatch(courseProgressActionCreator.completeTopic(courseID, sectionID, topicID));
+    },
+    changeCourseTopic(courseID, sectionID, topicID) {
+      dispatch(courseProgressActionCreator.changeTopic(courseID, sectionID, topicID));
     },
     startCourse(courseID) {
       dispatch(courseProgressActionCreator.startCourse(courseID));

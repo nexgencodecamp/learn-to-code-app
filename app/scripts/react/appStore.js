@@ -1,11 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import routeReducer from './reducers/routeReducer.js';
 import courseProgressReducer from './reducers/courseProgressReducer.js';
+import { routerReducer } from 'react-router-redux';
 
 const reducer = combineReducers({
-  route: routeReducer,
-  courseData: courseProgressReducer
+  courseData: courseProgressReducer,
+  routing: routerReducer
 });
 
 export default function storeCreator(initalState) {
