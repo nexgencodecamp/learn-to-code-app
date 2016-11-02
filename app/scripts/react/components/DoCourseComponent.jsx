@@ -76,7 +76,9 @@ class CodingWindowComponent extends React.Component {
   }
 
   getSandboxComponent() {
-    return React.createElement(JavascriptSandboxComponent);
+    return React.createElement(JavascriptSandboxComponent, {
+      expectedResult: this.props.courseData.currentTopic.expectedResult
+    });
   }
 
   getMainContent() {

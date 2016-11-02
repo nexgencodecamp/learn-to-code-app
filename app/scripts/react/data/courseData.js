@@ -11,7 +11,8 @@ export default {
             {
               topicID: 1,
               topicName: 'A great topic',
-              topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!`
+              topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "return". Say "hello" to the Zorglings. They'll be thrilled to hear from you!`,
+              expectedResult: 'hello'
             }
           ]
         },

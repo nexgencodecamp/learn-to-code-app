@@ -40,6 +40,12 @@ class CourseTableOfContentsComponent extends React.Component {
     sandboxEval(jsCode)
       .then(execResult => {
         // todo - not the right way to do this
+        if (execResult === this.props.expectedResult) {
+          document.querySelector('#result').innerHTML = 'CORRECT!';
+        } else {
+          document.querySelector('#result').innerHTML = `Oops that wasn't right. Try again! We expected ${this.props.expectedResult}`;
+        }
+
         document.querySelector('#jsOutput').innerHTML = execResult;
       })
       .catch(error => {
@@ -75,6 +81,7 @@ class CourseTableOfContentsComponent extends React.Component {
 
         <div id="outputWrapper">
           <h3>Output</h3>
+          <p id="result"></p>
           <output id="jsOutput">
           </output>
         </div>
