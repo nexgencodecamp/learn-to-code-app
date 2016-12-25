@@ -6,22 +6,24 @@ import waitForComponentToLoad from '../utils/waitForComponentToLoad';
 import BaseComponent from './components/BaseComponent';
 import CourseData from './data/courseData';
 import { browserHistory } from 'react-router';
-
 import { syncHistoryWithStore } from 'react-router-redux';
+import { getUserInfo } from './data/localStorageUtil';
 
 /**
  * Sets up the React container
  */
 function setupContainer() {
   const container = document.querySelector('#reactContainer');
+  const userInfo = getUserInfo();
   const appStore = createStore({
-    courseData: CourseData
+    courseData: CourseData,
+    userInfo,
   });
   const history = syncHistoryWithStore(browserHistory, appStore);
 
   ReactDOM.render(
     <Provider store={appStore}>
-      <BaseComponent enhancedHistory={history} />
+      <BaseComponent enhancedHistory={history} userInfo={userInfo}/>
     </Provider>,
     container
   );

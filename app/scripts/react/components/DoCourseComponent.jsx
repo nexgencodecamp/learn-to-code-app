@@ -140,18 +140,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    completeCourseTopic(courseID, sectionID, topicID) {
-      dispatch(courseProgressActionCreator.completeTopic(courseID, sectionID, topicID));
-    },
-    changeCourseTopic(courseID, sectionID, topicID) {
-      dispatch(courseProgressActionCreator.changeTopic(courseID, sectionID, topicID));
-    },
-    startCourse(courseID) {
-      dispatch(courseProgressActionCreator.startCourse(courseID));
-    }
-  };
-}
-
 export default connect(mapStateToProps, mapDispatchToProps)(CodingWindowComponent);

@@ -12,10 +12,17 @@ class BaseComponent extends React.Component {
     super();
   }
 
+  getIndexComponent() {
+    if (this.props.userInfo.loggedIn) {
+      return ChooseCourseComponent;
+    }
+    return LoginComponent;
+  }
+
   getRouteData() {
     return {
       path: '/',
-      component: LoginComponent,
+      component: this.getIndexComponent(),
       childRoutes: [
           { path: '/login', component: LoginComponent },
           {

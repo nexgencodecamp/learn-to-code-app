@@ -44,10 +44,10 @@ class ChooseCourseComponent extends React.Component {
   }
 
   render() {
-    // blocker todo - dropdown not working properly
     // todo - shouldn't directly include script tag and CSS here
     return (
       <div>
+        <h2>Welcome {this.props.userInfo.firstName}!</h2>
         <script src="../scripts/vendor/mdl-select.min.js"></script>
         <link rel="stylesheet" href="../styles/getmdl-select.min.css" />
         <div className="mdl-layout__tab-panel is-active" id="chooseCourseDropdown">
@@ -70,7 +70,8 @@ class ChooseCourseComponent extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    courseData: state.courseData
+    courseData: state.courseData,
+    userInfo: state.userInfo
   };
 }
 

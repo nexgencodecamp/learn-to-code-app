@@ -5,8 +5,8 @@ export default {
       value: {
         courseID,
         sectionID,
-        topicID
-      }
+        topicID,
+      },
     };
   },
   changeTopic(courseID, sectionID, topicID) {
@@ -15,14 +15,14 @@ export default {
       value: {
         courseID,
         sectionID,
-        topicID
-      }
+        topicID,
+      },
     };
   },
   startCourse(courseID) {
     return {
       type: 'START_COURSE',
-      value: courseID
+      value: courseID,
     };
-  }
+  },
 };
