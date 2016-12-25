@@ -24,14 +24,11 @@ class ChooseCourseComponent extends React.Component {
   }
 
   handleChangeCourse(chosenCourse) {
-    this.state = {
-      // todo - need to properly set value of dropdown
-      chosenCourse: chosenCourse
-    };
+    this.chosenCourse = chosenCourse;
   }
 
   handleChooseCourse(e) {
-    const chosenCourse = this.state.chosenCourse;
+    const chosenCourse = this.chosenCourse;
     this.context.router.push(`/doCourse/${chosenCourse}`);
     e.preventDefault();
   }
