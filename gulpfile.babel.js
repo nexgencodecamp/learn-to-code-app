@@ -246,8 +246,8 @@ gulp.task('serve:dist', ['scripts', 'html', 'styles', 'copy-vendor-scripts'],
 gulp.task('default', ['clean'], (cb) =>
   runSequence(
     'styles',
-    ['lint', 'html', 'scripts', 'images', 'copy'],
     'copy-vendor-scripts',
+    ['html', 'scripts', 'images', 'copy'],
     'generate-service-worker',
     cb
   )
