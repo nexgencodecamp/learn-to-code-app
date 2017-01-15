@@ -7,6 +7,8 @@ import findIndex from 'lodash.findindex';
 */
 export default function reducer(state = {}, action) {
   switch (action.type) {
+    case 'CHANGE_COURSE':
+      return Object.assign({}, state, action.value);
     case 'START_COURSE':
       return getNewStateAfterStartingCourse(state, action.value);
     case 'COMPLETE_TOPIC':

@@ -1,4 +1,12 @@
 export default {
+  changeCourse(courseID) {
+    return {
+      type: 'CHANGE_COURSE',
+      value: {
+        currentCourse: courseID,
+      },
+    };
+  },
   completeTopic(courseID, sectionID, topicID) {
     return {
       type: 'COMPLETE_TOPIC',

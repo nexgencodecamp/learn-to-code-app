@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Select from './forms/ReactSelectWrapper';
 import './css/chooseCourse.css';
+import CourseProgressActionCreator from '../actionCreators/courseProgress.js';
 
 class ChooseCourseComponent extends React.Component {
 
@@ -22,24 +23,24 @@ class ChooseCourseComponent extends React.Component {
   }
 
   handleChangeCourse(chosenCourse) {
-    this.chosenCourse = chosenCourse;
+    this.props.changeCourse(chosenCourse.value);
   }
 
   handleChooseCourse(e) {
-    const chosenCourse = this.chosenCourse;
+    const chosenCourse = this.props.courseData.currentCourse;
     this.context.router.push(`/doCourse/${chosenCourse}`);
     e.preventDefault();
   }
 
   getCourseList() {
     return this.props.courseData.courses.map((course, index) => ({
-      value: index + 1,
+      value: course.courseID,
       label: course.courseName
     }));
   }
 
   render() {
-    // todo - shouldn't directly include script tag and CSS here
+    const currentCourse = this.props.courseData.currentCourse;
     return (
       <div>
         <div
@@ -52,6 +53,7 @@ class ChooseCourseComponent extends React.Component {
               name="form-field-name"
               options={this.getCourseList()}
               onChange={this.handleChangeCourse}
+              value={currentCourse}
           />
           <br/>
           <button
@@ -71,8 +73,16 @@ class ChooseCourseComponent extends React.Component {
 function mapStateToProps(state) {
   return {
     courseData: state.courseData,
-    userInfo: state.userInfo
+    userInfo: state.userInfo,
   };
 }
 
-export default connect(mapStateToProps)(ChooseCourseComponent);
+function mapDispatchToProps(dispatch) {
+  return {
+    changeCourse(courseID) {
+      dispatch(CourseProgressActionCreator.changeCourse(courseID));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChooseCourseComponent);
