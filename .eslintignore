@@ -1,0 +1,4 @@
+app/service-worker.js
+app/sw/**
+app/vendor/**
+dist/**

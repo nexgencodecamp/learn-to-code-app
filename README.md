@@ -8,6 +8,7 @@ Progressive web app to help beginners learn to code javascript. Will have a bunc
 ##About the app
 Based on the [Web Starter Kit](https://developers.google.com/web/tools/starter-kit/)
 Uses:
+
 1. Service workers for offline
 2. React/Redux/React Router for app architecture
 3. Web workers for sandboxing JS execution

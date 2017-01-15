@@ -1,5 +1,10 @@
 import findIndex from 'lodash.findindex';
 
+/**
+@param  {Object}  state  The state prior to reduction
+@param  {Object}  action  The reducer action
+@return  {Object}  The state after reducer operations
+*/
 export default function reducer(state = {}, action) {
   switch (action.type) {
     case 'START_COURSE':
@@ -15,11 +20,19 @@ export default function reducer(state = {}, action) {
   }
 }
 
+/**
+* Utility function to generate state after starting a course
+* Needed because need to find the first section and first topic for
+* that course.
+* @param  {Object} state The old state
+* @param  {number} courseID The ID of the course being started
+* @return  {Object} The new state after reduction
+*/
 function getNewStateAfterStartingCourse(state, courseID) {
   return Object.assign({}, state, {
     currentCourse: getCourseDataFromID(state, courseID),
     currentSection: getFirstSectionForCourse(state, courseID),
-    currentTopic: getFirstTopicForSection(state, courseID)
+    currentTopic: getFirstTopicForSection(state, courseID),
   });
 }
 
@@ -40,8 +53,8 @@ function getNewStateAfterChangingRoute(state, action) {
           value: {
             courseID,
             sectionID,
-            topicID
-          }
+            topicID,
+          },
         }
       );
     }

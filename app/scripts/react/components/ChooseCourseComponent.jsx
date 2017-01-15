@@ -1,10 +1,8 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import courseProgressActionCreator from '../actionCreators/courseProgress.js';
-import Select from 'react-select';
-// Be sure to include styles at some point, probably during your bootstrapping
-import 'react-select/dist/react-select.css';
+import Select from './forms/ReactSelectWrapper';
+import './css/chooseCourse.css';
 
 class ChooseCourseComponent extends React.Component {
 
@@ -44,19 +42,24 @@ class ChooseCourseComponent extends React.Component {
     // todo - shouldn't directly include script tag and CSS here
     return (
       <div>
-        <h2>Welcome {this.props.userInfo.firstName}!</h2>
-        <script src="../scripts/vendor/mdl-select.min.js"></script>
-        <link rel="stylesheet" href="../styles/getmdl-select.min.css" />
-        <div className="mdl-layout__tab-panel is-active" id="chooseCourseDropdown">
-
+        <div
+          styleName="choose-course-wrapper"
+          className="mdl-layout__tab-panel is-active"
+          id="chooseCourseDropdown"
+        >
+          <h2>Welcome {this.props.userInfo.firstName}!</h2>
           <Select
               name="form-field-name"
               options={this.getCourseList()}
               onChange={this.handleChangeCourse}
           />
-
           <br/>
-          <button onClick={this.handleChooseCourse} id="chooseCourse" className="mdl-button mdl-js-button mdl-button--raised vertical-center">
+          <button
+            onClick={this.handleChooseCourse}
+            id="chooseCourse"
+            className="mdl-button mdl-js-button
+              mdl-button--raised vertical-center"
+          >
             <i className="material-icons">play_circle_filled</i> Start Course!
           </button>
         </div>

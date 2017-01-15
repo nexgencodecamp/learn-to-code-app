@@ -1,0 +1,7 @@
+// Select.scss (SASS + CSS Modules)
+.select {
+  max-width: 15rem;
+  :global {
+      @import "node_modules/react-select/scss/default.scss";
+  }
+}

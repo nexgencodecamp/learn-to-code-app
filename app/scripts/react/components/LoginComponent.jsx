@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import userInfoActions from '../actionCreators/userInfo.js';
+import './css/login.css';
 
 class LoginComponent extends React.Component {
 
@@ -13,7 +14,7 @@ class LoginComponent extends React.Component {
   }
 
   static contextTypes = {
-    router: React.PropTypes.object
+    router: React.PropTypes.object,
   }
 
   handleEnterFirstName(e) {
@@ -27,7 +28,7 @@ class LoginComponent extends React.Component {
 
   render() {
     return (
-      <div>
+      <div styleName='loginWrapper'>
         Hi friend! We haven't met yet. Can you give me your first name please?
         <br/>
         <input type="text" onChange={this.handleEnterFirstName}/>
