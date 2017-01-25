@@ -10,6 +10,7 @@ class LoginComponent extends React.Component {
     super();
     this.state = this.state || {};
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleEnterFirstName = this.handleEnterFirstName.bind(this);
   }
 
@@ -26,9 +27,16 @@ class LoginComponent extends React.Component {
     this.context.router.push('/chooseCourse');
   }
 
+  handleKeyPress(e) {
+    const ENTER_KEY = 13;
+    if (e.which === ENTER_KEY) {
+      this.handleLogin();
+    }
+  }
+
   render() {
     return (
-      <div styleName='loginWrapper'>
+      <div styleName='loginWrapper' onKeyPress={this.handleKeyPress}>
         Hi friend! We haven't met yet. Can you give me your first name please?
         <br/>
         <input type="text" onChange={this.handleEnterFirstName}/>
