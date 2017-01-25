@@ -6,20 +6,20 @@ function importWebComponents() {
     {
       idOfImportLink: 'component-header',
       destination: '#container',
-      operation: 'prepend'
+      operation: 'prepend',
     },
     {
       idOfImportLink: 'component-reactContainer',
-      destination: '#content'
+      destination: '#content',
     },
     {
       idOfImportLink: 'component-about',
-      destination: '#content'
+      destination: '#content',
     },
     {
       idOfImportLink: 'component-footer',
-      destination: '#content'
-    }
+      destination: '#content',
+    },
   ];
   components.forEach(importAndInsertComponent);
 }
@@ -41,7 +41,7 @@ function importAndInsertComponent(data) {
   const componentElements = importedComponent.body.childNodes || [];
   const destination = document.querySelector(data.destination);
 
-  componentElements.forEach(componentEl => {
+  componentElements.forEach((componentEl) => {
     insertElement(componentEl, destination, data.operation);
   });
 }

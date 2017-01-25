@@ -1,6 +1,10 @@
+/**
+* Waits until the web component has properly attached to the DOM
+* @return  {Promise}  Promise that resolves once the web component
+    appears on the page
+*/
 export default function waitForComponentToLoad() {
-  return new Promise(resolve => {
-    console.log('LOADING COMPONENT!');
+  return new Promise((resolve) => {
     const target = document.querySelector('main');
     const componentsAlreadyLoaded = target.innerHTML.trim() !== '';
     if (componentsAlreadyLoaded) {
@@ -9,8 +13,6 @@ export default function waitForComponentToLoad() {
 
     const mutationObserver = new MutationObserver(() => {
       mutationObserver.disconnect();
-      console.log('LOADED COMPONENT!');
-
       resolve();
     });
     const config = { attributes: true, childList: true, characterData: true };

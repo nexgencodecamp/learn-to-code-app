@@ -7,22 +7,34 @@ import { connect } from 'react-redux';
 import courseProgressActionCreator from '../actionCreators/courseProgress.js';
 import './css/doCourse.css';
 
-class CodingWindowComponent extends React.Component {
+/**
+* This component shows the question the student needs
+* to answer and includes a coding sandbox for them to work with.
+* When they get the right code, the Next button is shown.
+*/
+class DoCourseComponent extends React.Component {
 
-  constructor(props) {
+  /**
+   *  Bind methods to component so can use them with onClick
+   */
+  constructor() {
     super();
     this.handleCompleteTopic = this.handleCompleteTopic.bind(this);
   }
 
   static propTypes = {
     completeCourseTopic: React.PropTypes.func,
-    courseData: React.PropTypes.object
+    courseData: React.PropTypes.object,
   }
 
   static contextTypes = {
-    router: React.PropTypes.object
+    router: React.PropTypes.object,
   }
 
+  /**
+   *  Triggered after the user successfully completes a topic.
+   *  Triggers action to move them to next topic.
+   **/
   handleCompleteTopic() {
     const currentCourseID = this.props.courseData.currentCourse.courseID;
     const currentSectionID = this.props.courseData.currentSection.sectionID;
@@ -31,39 +43,57 @@ class CodingWindowComponent extends React.Component {
     this.completeCourseTopic(currentCourseID, currentSectionID, currentTopicID);
   }
 
+  /**
+   * Bit hacky but we need to do this
+   * to hide the drawer when the component unmounts. Doing it like
+   * this because the drawer is based on a class on a parent element.
+   * //todo - refactor this at some point.
+   **/
   removeDrawer() {
     const container = document.querySelector('#container');
     container.classList.remove('mdl-layout--fixed-drawer');
   }
 
+  /**
+   * See above. Same logic for adding drawer.
+   */
   addDrawer() {
     // todo - this should be controlled by router
     const container = document.querySelector('#container');
     container.classList.add('mdl-layout--fixed-drawer');
   }
 
+  /**
+   * Triggered when the component gets mounted.
+   * Show the drawer so we can render table of contents.
+   */
   componentDidMount() {
     this.addDrawer();
   }
 
+  /**
+   * Triggered when the component gets unmounted.
+   * Hide the drawer at this point because it isn't relevant
+   * if the DoCourse screen isn't showing.
+   */
   componentWillUnmount() {
     this.removeDrawer();
   }
 
-  componentDidUpdate() {
-    // scroll to top
-    // todo - this doesn't work
-    document.querySelector('#startCoding').scrollTop = 0;
-  }
-
+  /**
+   *  @return  {JSX}  Table of contents JSX
+   */
   getCourseTableOfContents() {
     return React.createElement(CourseTableOfContentsComponent, {
       courseData: this.props.courseData,
-      changeCourseTopic: this.props.changeCourseTopic,
-      params: this.props.params
+      params: this.props.params,
     });
   }
 
+  /**
+   * @return  {JSX}  Shows details about the current topic above code input
+   *                so the student knows what they're meant to do.
+   */
   getTopicContent() {
     if (this.currentTopic) {
       return (
@@ -76,12 +106,21 @@ class CodingWindowComponent extends React.Component {
     }
   }
 
+  /**
+   * @return  {ReactElement} The coding sandbox that the student
+   *            uses to write code.
+   */
   getSandboxComponent() {
     return React.createElement(JavascriptSandboxComponent, {
-      expectedResult: this.props.courseData.currentTopic.expectedResult
+      expectedResult: this.props.courseData.currentTopic.expectedResult,
     });
   }
 
+  /**
+   * @return  {JSX}  The main contents of the Course screen including:
+   *   - course description
+   *   - code sandbox
+   */
   getMainContent() {
     const wasCorrect = this.props.codeExecutionResult.correctStatus;
     const buttonVisibleClass = wasCorrect ? '' : 'hidden';
@@ -111,6 +150,9 @@ class CodingWindowComponent extends React.Component {
     }
   }
 
+  /**
+   * @return {JSX} the table of contents and the coding window
+   */
   render() {
     this.currentCourse = this.props.courseData.currentCourse;
     this.currentSection = this.props.courseData.currentSection;
@@ -128,6 +170,11 @@ class CodingWindowComponent extends React.Component {
   }
 }
 
+/**
+*  Maps Redux store state to props
+*  @param  {Object}  state - the Redux state
+*  @return  {Object}  props based on Redux state
+*/
 function mapStateToProps(state) {
   return {
     courseData: state.courseData,
@@ -135,6 +182,11 @@ function mapStateToProps(state) {
   };
 }
 
+/**
+*  Maps action creators to props.
+*  @param  {Function}  dispatch - the Redux event dispatcher method
+*  @return  {Object}  Action creator methods that should be added to props.
+*/
 function mapDispatchToProps(dispatch) {
   return {
     completeCourseTopic(courseID, sectionID, topicID) {
@@ -145,8 +197,8 @@ function mapDispatchToProps(dispatch) {
     },
     startCourse(courseID) {
       dispatch(courseProgressActionCreator.startCourse(courseID));
-    }
+    },
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CodingWindowComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(DoCourseComponent);

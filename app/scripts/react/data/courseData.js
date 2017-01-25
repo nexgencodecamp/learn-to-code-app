@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export default {
   courses: [
     {
@@ -12,9 +13,9 @@ export default {
               topicID: 1,
               topicName: 'A great topic',
               topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "return". Say "hello" to the Zorglings. They'll be thrilled to hear from you!`,
-              expectedResult: 'hello'
-            }
-          ]
+              expectedResult: 'hello',
+            },
+          ],
         },
         {
           sectionName: 'Section 2',
@@ -23,11 +24,11 @@ export default {
             {
               topicID: 2,
               topicName: 'A good topic',
-              topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!`
-            }
-          ]
-        }
-      ]
+              topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!`,
+            },
+          ],
+        },
+      ],
     },
     {
       courseName: 'Course 2 - the more awesome one',
@@ -40,9 +41,9 @@ export default {
             {
               topicID: 3,
               topicName: 'An excellent topic',
-              topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!`
-            }
-          ]
+              topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!`,
+            },
+          ],
         },
         {
           sectionName: 'Section 2',
@@ -51,11 +52,11 @@ export default {
             {
               topicID: 4,
               topicName: 'A thrilling topic',
-              topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!`
-            }
-          ]
-        }
-      ]
+              topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!`,
+            },
+          ],
+        },
+      ],
     },
     {
       courseName: 'Course 3 - the most awesome one!',
@@ -68,9 +69,9 @@ export default {
             {
               topicID: 5,
               topicName: 'A fantastic topic',
-              topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!`
-            }
-          ]
+              topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!`,
+            },
+          ],
         },
         {
           sectionName: 'Section 2',
@@ -79,11 +80,11 @@ export default {
             {
               topicID: 6,
               topicName: 'An excellent topic',
-              topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!`
-            }
-          ]
-        }
-      ]
-    }
-  ]
+              topicContent: `You are an ambassador to the planet Zorg, whose inhabitants can only understand English if it is entered through their translation engine, known as "console.log". Extend a warm greeting to the Zorglings. They'll be thrilled to hear from you!`,
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };

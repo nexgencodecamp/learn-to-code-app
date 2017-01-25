@@ -1,4 +1,6 @@
 app/service-worker.js
 app/sw/**
 app/vendor/**
+app/scripts/main.js
+app/scripts/sw/runtime-caching.js
 dist/**

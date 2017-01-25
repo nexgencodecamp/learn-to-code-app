@@ -5,7 +5,8 @@
     },
     "rules": {
         "object-curly-spacing": [2, "always"],
-        "react/jsx-uses-vars": 1
+        "react/jsx-uses-vars": 1,
+        "max-len": [1, 100]
     },
     "plugins": [
       "react"
