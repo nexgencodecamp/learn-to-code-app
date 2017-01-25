@@ -5,6 +5,7 @@ import CourseTableOfContentsComponent from './CourseTableOfContentsComponent';
 import JavascriptSandboxComponent from './JavascriptSandboxComponent';
 import { connect } from 'react-redux';
 import courseProgressActionCreator from '../actionCreators/courseProgress.js';
+import './css/doCourse.css';
 
 class CodingWindowComponent extends React.Component {
 
@@ -82,6 +83,10 @@ class CodingWindowComponent extends React.Component {
   }
 
   getMainContent() {
+    const wasCorrect = this.props.codeExecutionResult.correctStatus;
+    const buttonVisibleClass = wasCorrect ? '' : 'hidden';
+    const buttonClasses = `${buttonVisibleClass} mdl-button mdl-js-button
+              mdl-button--raised vertical-center`;
     if (this.currentCourse && this.currentCourse.isComplete) {
       return (
         <h3>
@@ -90,12 +95,15 @@ class CodingWindowComponent extends React.Component {
       );
     } else {
       return (
-        <div className="page-content">
+        <div className="page-content" styleName="do-course-wrapper">
           <div id="sectionContent">
             {this.getTopicContent()}
           </div>
           {this.getSandboxComponent()}
-          <button onClick={this.handleCompleteTopic} id="gotoNext" className="mdl-button mdl-js-button mdl-button--raised vertical-center">
+          <button
+            onClick={this.handleCompleteTopic} id="gotoNext"
+            className={buttonClasses}
+          >
             <i className="material-icons">check_circle</i> Goto Next
           </button>
         </div>
@@ -122,7 +130,8 @@ class CodingWindowComponent extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    courseData: state.courseData
+    courseData: state.courseData,
+    codeExecutionResult: state.codeExecutionResult,
   };
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import './css/courseTableOfContents.css';
 
 class CourseTableOfContentsComponent extends React.Component {
 
@@ -54,7 +55,9 @@ class CourseTableOfContentsComponent extends React.Component {
     }
     return (
       <div className="mdl-layout__drawer">
-        <span className="mdl-layout-title">{this.props.courseData.currentCourse.courseName}</span>
+        <span styleName="toc-title">
+          {this.props.courseData.currentCourse.courseName}
+        </span>
         <nav className="mdl-navigation">
           {this.getCourseDetails()}
         </nav>
