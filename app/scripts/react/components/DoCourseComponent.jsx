@@ -128,9 +128,13 @@ class DoCourseComponent extends React.Component {
               mdl-button--raised vertical-center`;
     if (this.currentCourse && this.currentCourse.isComplete) {
       return (
-        <h3>
-          You've completed the course! Well done :)
-        </h3>
+        <div className="page-content" styleName="do-course-wrapper">
+          <h3>
+            You've completed the course! Well done :)
+            <br/>
+            <a href="/">Go back and choose another course</a>
+          </h3>
+        </div>
       );
     } else {
       return (

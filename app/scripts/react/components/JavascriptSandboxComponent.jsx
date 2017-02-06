@@ -79,17 +79,41 @@ class JavascriptSandboxComponent extends React.Component {
   }
 
   /**
-   * Renders the component using CSS modules for styling.
-   * @return {JSX}  JSX
-   */
-  render() {
-    const executionOutput = this.props.codeExecutionResult.output || '';
+   *  Sets the code mirror value - useful when need to reset
+   *  codemirror after student moves to next topic.
+   *  @param  {String}  value  The code that should appear in code mirror.
+   **/
+  setCodeMirrorValue(value) {
+    if (!this.codeMirrorInstances) {
+      return;
+    }
+
+    this.getCodeMirrorInstance('javascriptCodeMirror').setValue(value || '');
+  }
+
+  /**
+   *  @return  {String}  A summary of whether the student got the question
+   *    right or wrong.
+   **/
+  getRightOrWrongDescription() {
     const executionResult = this.props.codeExecutionResult.correctStatus;
     let rightOrWrong;
     if (this.props.codeExecutionResult.executed) {
       rightOrWrong = 'Result: ' +
           (executionResult ? 'CORRECT!' : 'OOPS TRY AGAIN :(');
     }
+
+    return rightOrWrong;
+  }
+
+  /**
+   * Renders the component using CSS modules for styling.
+   * @return {JSX}  JSX
+   */
+  render() {
+    const executionOutput = this.props.codeExecutionResult.output || '';
+    const rightOrWrong = this.getRightOrWrongDescription();
+    this.setCodeMirrorValue(this.props.codeExecutionResult.codeToExecute);
     return (
       <div>
         <div className="mdl-grid" styleName="no-padding">

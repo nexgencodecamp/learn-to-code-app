@@ -16,40 +16,8 @@ class BaseComponent extends React.Component {
     if (this.props.userInfo.loggedIn) {
       return ChooseCourseComponent;
     }
+    'testing';
     return LoginComponent;
-  }
-
-  getRouteData() {
-    return {
-      path: '/',
-      component: this.getIndexComponent(),
-      childRoutes: [
-          { path: '/login', component: LoginComponent },
-          {
-              path: '/chooseCourse',
-              component: ChooseCourseComponent,
-              courseData: this.props.courseData,
-              startCourse: this.props.startCourse
-          },
-          {
-              path: '/doCourse/:courseID',
-              component: DoCourseComponent,
-              courseData: this.props.courseData
-          },
-          {
-              path: '/doCourse/:courseID/:sectionID/:topicID',
-              component: DoCourseComponent,
-              courseData: this.props.courseData,
-              completeCourseTopic: this.props.completeCourseTopic
-          }
-      ]
-    };
-  }
-
-  useExtraProps() {
-    return {
-      renderRouteComponent: child => React.cloneElement(child, this.props)
-    };
   }
 
   render() {
@@ -59,7 +27,7 @@ class BaseComponent extends React.Component {
         <Route path='/chooseCourse' component={ChooseCourseComponent} />
         <Route path='/doCourse/:courseID' component={DoCourseComponent} />
         <Route path='/doCourse/:courseID/:sectionID/:topicID' component={DoCourseComponent} />
-        <Route path='/' component={LoginComponent} />
+        <Route path='/' component={this.getIndexComponent()} />
       </Router>
     );
   }

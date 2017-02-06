@@ -6,7 +6,6 @@ import sandboxEval from '../../utils/sandboxEval';
 * @return {Object} The action payload
 */
 function executedCode(value) {
-  debugger;
   return {
     type: 'EXECUTED_CODE',
     value,
@@ -15,13 +14,15 @@ function executedCode(value) {
 
 /**
 * Prepares action payload when code has started executing
+* @param  {Object} codeToExecute  The code to execute
 * @return {Object} The action payload
 */
-function executingCode() {
+function executingCode(codeToExecute) {
   return {
     type: 'EXECUTING_CODE',
     value: {
       status: 'EXECUTING CODE',
+      codeToExecute,
     },
   };
 }
@@ -30,7 +31,7 @@ export default {
   executeCode(codeToExecute, expectedResult) {
     // use thunk so we can handle the async save to zoho crm
     return function doAsyncDispatch(dispatch) {
-      dispatch(executingCode());
+      dispatch(executingCode(codeToExecute));
       sandboxEval(codeToExecute)
         .then((execResult) => {
           if (execResult === expectedResult) {

@@ -9,6 +9,8 @@ export default function reducer(state = {}, action) {
       return Object.assign({}, state, action.value);
     case 'EXECUTED_CODE':
       return Object.assign({}, state, action.value);
+    case 'COMPLETE_TOPIC':
+      return {};
     default:
       return state;
   }

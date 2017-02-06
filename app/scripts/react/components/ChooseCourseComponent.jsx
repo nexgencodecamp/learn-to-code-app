@@ -43,7 +43,7 @@ class ChooseCourseComponent extends React.Component {
    * @param  {Event} e  The click event fired by the button
    */
   handleChooseCourse(e) {
-    const chosenCourse = this.props.courseData.currentCourse;
+    const chosenCourse = this.props.courseData.currentCourse.courseID;
     this.context.router.push(`/doCourse/${chosenCourse}`);
     e.preventDefault();
   }
@@ -62,7 +62,11 @@ class ChooseCourseComponent extends React.Component {
    *  @return {JSX} JSX for the choose course component
    **/
   render() {
-    const currentCourse = this.props.courseData.currentCourse;
+    let currentCourse = 1;
+    if (this.props.courseData.currentCourse) {
+      currentCourse = this.props.courseData.currentCourse.courseID;
+    }
+
     return (
       <div>
         <div
