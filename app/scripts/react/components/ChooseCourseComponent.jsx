@@ -52,10 +52,16 @@ class ChooseCourseComponent extends React.Component {
    *  @return  {Array} the data required to populate the course dropdown
    */
   getCourseList() {
-    return this.props.courseData.courses.map((course, index) => ({
-      value: course.courseID,
-      label: course.courseName,
-    }));
+    return this.props.courseData.courses.map((course, index) => {
+      const courseDataForDropdown = {
+        value: course.courseID,
+        label: course.courseName,
+      };
+      if (course.isComplete) {
+        courseDataForDropdown.label += ' (complete)';
+      }
+      return courseDataForDropdown;
+    });
   }
 
   /**
