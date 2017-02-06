@@ -21,3 +21,11 @@ Contributions, questions and comments are all welcome and encouraged. For code c
 
 Apache 2.0  
 Copyright 2015 Google Inc
+
+
+## Todos
+
+[] Move material-icons into vendor folder rather than relying on Google CDN
+[] Update course data
+[] Add tests
+[] Improve webpack config so it doesn't take 10 seconds to transpile (split into vendor and app bundles)
