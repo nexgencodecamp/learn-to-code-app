@@ -103,6 +103,17 @@ gulp.task('styles', () => {
     .pipe(gulp.dest('dist/styles'));
 });
 
+gulp.task('fonts', () => {
+  // For best performance, don't add Sass partials to `gulp.src`
+  return gulp.src([
+    'app/fonts/*',
+  ])
+    .pipe($.newer('.tmp/fonts'))
+    .pipe(gulp.dest('.tmp/styles'))
+    .pipe($.size({ title: 'fonts' }))
+    .pipe(gulp.dest('dist/fonts'));
+});
+
 // Concatenate and minify JavaScript. Optionally transpiles ES2015 code to ES5.
 // to enable ES2015 support remove the line `"only": "gulpfile.babel.js",`
 // in the `.babelrc` file.
@@ -197,7 +208,7 @@ gulp.task('html', () => {
 gulp.task('clean', () => del(['.tmp', 'dist/*', '!dist/.git'], { dot: true }));
 
 // Watch files for changes & reload
-gulp.task('serve', ['scripts', 'styles'], () => {
+gulp.task('serve', ['scripts', 'styles', 'fonts'], () => {
   browserSync({
     notify: false,
     // Customize the Browsersync console logging prefix
@@ -219,7 +230,7 @@ gulp.task('serve', ['scripts', 'styles'], () => {
 });
 
 // Build and serve the output from the dist build
-gulp.task('serve:dist', ['scripts', 'html', 'styles', 'copy-vendor-scripts'],
+gulp.task('serve:dist', ['scripts', 'html', 'styles', 'fonts', 'copy-vendor-scripts'],
 () => {
   browserSync({
     notify: false,
@@ -304,6 +315,7 @@ gulp.task('generate-service-worker', ['copy-sw-scripts'], () => {
       `${rootDir}/images/**/*`,
       `${rootDir}/scripts/**/*.js`,
       `${rootDir}/styles/**/*.css`,
+      `${rootDir}/fonts/*.woff2`,
       `${rootDir}/html/*.{html,json}`,
       `${rootDir}/*.{html,json}`,
     ],
