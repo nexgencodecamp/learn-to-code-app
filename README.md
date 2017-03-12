@@ -25,7 +25,6 @@ Copyright 2015 Google Inc
 
 ## Todos
 
-[] Move material-icons into vendor folder rather than relying on Google CDN
-[] Update course data
+[] Add distractor rationale/hints
 [] Add tests
 [] Improve webpack config so it doesn't take 10 seconds to transpile (split into vendor and app bundles)

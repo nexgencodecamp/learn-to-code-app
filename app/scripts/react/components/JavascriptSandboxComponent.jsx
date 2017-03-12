@@ -56,7 +56,7 @@ class JavascriptSandboxComponent extends React.Component {
    */
   handleRunCode() {
     const jsCode = this.getCodeFromCodeMirror();
-    this.props.executeCode(jsCode, this.props.expectedResult);
+    this.props.executeCode(jsCode, this.props.expectedResult, this.props.expectedInput);
   }
 
   /**
@@ -119,7 +119,6 @@ class JavascriptSandboxComponent extends React.Component {
         <div className="mdl-grid" styleName="no-padding">
           <div className="mdl-cell" styleName="no-margin">
             <h3>Javascript</h3>
-            <span>Make sure you include return on the last line</span>
             <textarea id="javascriptCodeMirror"
               data-code-mirror-text-area
               className="hidden"
@@ -141,7 +140,7 @@ class JavascriptSandboxComponent extends React.Component {
           <h3 styleName="no-margin-bottom">{rightOrWrong}</h3>
           <h3 styleName="no-margin-bottom">Output</h3>
           <output id="jsOutput">
-          {executionOutput}
+          {JSON.stringify(executionOutput)}
           </output>
         </div>
       </div>
@@ -156,8 +155,8 @@ class JavascriptSandboxComponent extends React.Component {
 */
 function mapDispatchToProps(dispatch) {
   return {
-    executeCode(userInput, expectedResult) {
-      dispatch(ExecuteCodeActions.executeCode(userInput, expectedResult));
+    executeCode(userInput, expectedResult, expectedInput) {
+      dispatch(ExecuteCodeActions.executeCode(userInput, expectedResult, expectedInput));
     },
   };
 }

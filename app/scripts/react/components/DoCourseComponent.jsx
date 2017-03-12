@@ -113,6 +113,7 @@ class DoCourseComponent extends React.Component {
   getSandboxComponent() {
     return React.createElement(JavascriptSandboxComponent, {
       expectedResult: this.props.courseData.currentTopic.expectedResult,
+      expectedInput: this.props.courseData.currentTopic.expectedInput,
     });
   }
 
