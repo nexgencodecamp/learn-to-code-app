@@ -97,13 +97,15 @@ class JavascriptSandboxComponent extends React.Component {
    **/
   getRightOrWrongDescription() {
     const executionResult = this.props.codeExecutionResult.correctStatus;
-    let rightOrWrong;
     if (this.props.codeExecutionResult.executed) {
-      rightOrWrong = 'Result: ' +
-          (executionResult ? 'CORRECT!' : 'OOPS TRY AGAIN :(');
+      if (executionResult) {
+        return 'CORRECT!';
+      }
+      const relevantDistractorRationale =
+        this.props.distractorRationale[this.getCodeFromCodeMirror()] ||
+        this.props.distractorRationale['*'];
+      return `Not quite. Here's a hint: ${relevantDistractorRationale}`;
     }
-
-    return rightOrWrong;
   }
 
   /**
@@ -156,7 +158,11 @@ class JavascriptSandboxComponent extends React.Component {
 function mapDispatchToProps(dispatch) {
   return {
     executeCode(userInput, expectedResult, expectedInput) {
-      dispatch(ExecuteCodeActions.executeCode(userInput, expectedResult, expectedInput));
+      dispatch(ExecuteCodeActions.executeCode(
+        userInput,
+        expectedResult,
+        expectedInput
+      ));
     },
   };
 }

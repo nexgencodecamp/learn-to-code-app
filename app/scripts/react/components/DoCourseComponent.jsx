@@ -99,8 +99,14 @@ class DoCourseComponent extends React.Component {
       return (
         <div>
           <h3>{this.currentTopic.topicName}</h3>
-          <br/>
-          <div>{this.currentTopic.topicContent}</div>
+          <div>
+            <h4>The Lesson:</h4>
+            {this.currentTopic.topicLesson}
+          </div>
+          <div>
+            <h4>Your Mission:</h4>
+            {this.currentTopic.topicContent}
+          </div>
         </div>
       );
     }
@@ -114,6 +120,7 @@ class DoCourseComponent extends React.Component {
     return React.createElement(JavascriptSandboxComponent, {
       expectedResult: this.props.courseData.currentTopic.expectedResult,
       expectedInput: this.props.courseData.currentTopic.expectedInput,
+      distractorRationale: this.props.courseData.currentTopic.distractorRationale,
     });
   }
 
@@ -140,7 +147,7 @@ class DoCourseComponent extends React.Component {
     } else {
       return (
         <div className="page-content" styleName="do-course-wrapper">
-          <div id="sectionContent">
+          <div id="topicContent">
             {this.getTopicContent()}
           </div>
           {this.getSandboxComponent()}

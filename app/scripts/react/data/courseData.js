@@ -63,29 +63,54 @@ const courseData = {
             {
               topicID: 1,
               topicName: 'Strings',
+              topicLesson: 'A javascript string is a collection of letters, numbers or characters inside quotation marks. All of these are strings: "123", "Mary had a little lamb", "Pirates are *&!@#ing awesome!", "true". These are not strings: 123, false, testing(); - because they don\'t have quotation marks around them.',
               topicContent: `A crazy rabbit is running towards you with horrible yellow teeth and an evil glint in its eye. Using a javascript String, tell this deranged creature to Stop!`,
               expectedResult: 'Stop!',
+              distractorRationale: {
+                '*': '(Remember that Javascript strings look like this: "Rabbits are evil creatures" - one or more words inside quotation marks.) Make sure that your answer is a string and it has exactly this content: Stop!',
+                'stop': 'Close - make sure you include the exclamation mark and a capital letter - Stop!',
+              },
             },
             {
               topicID: 2,
               topicName: 'Booleans',
-              topicContent: `The rabbit glares at you for pausing his rampage and then says: "I'll stop on one condition: you have to give me ten carrots. Do you have ten carrots in your bag?". It just so happens you do, so tell him the truth.`,
+              topicLesson: 'Booleans are either true or false. They have no quotation marks around them. "true" is not a boolean but true is.',
+              topicContent: `The rabbit glares at you for pausing his rampage and then says: "I'll stop on one condition: you have to give me ten carrots. Do you have ten carrots in your bag?". It just so happens you do, so tell him the truth using a Boolean value.`,
               expectedResult: true,
+              distractorRationale: {
+                '*': `Don't forget that Booleans are either true or false. They don't have quotation marks around them.`,
+                'false': `Don't lie! You do have 10 carrots in your bag.`,
+              },
             },
             {
               topicID: 3,
+              topicLesson: `Numbers are numbers :) 123.57 is a number. "123.57" is not a number (it's a String)`,
               topicName: 'Numbers',
               topicContent: `Mourning the loss of your carrots, you are walking in the park when you come across an alien trying to swim in the pond. The poor chap gets attacked by ducks and after screaming for help in an unintelligble language, it sinks beneath the surface. You jump in and pull it out and commence CPR, hoping you won't catch any diseases it has. Seeing a passerby, you ask them to call the ambulance but this person's phone doesn't have any 0s on it. Tell them an emergency number to call instead (try the one that works in American movies;))`,
               expectedResult: 911,
+              distractorRationale: {
+                '*': `The answer is 1000 - 89.`,
+                '000': `Close but that number doesn't work in the USA!`,
+              },
             },
             {
               topicID: 4,
+              topicLesson: `We're surrounded by objects. A table is an object. So is a chair. So are you! In Javascript, objects look like this:
+                var zombie = {
+                  scary: true,
+                  numberOfEyes: 1,
+                  favouriteFood: 'brains'
+                };
+              `,
               topicName: 'Objects',
               topicContent: `When the ambulance arrives, they ask you to give them the alien's vital statistics in Object format. They want to know how many arms the alien has (7), what its heart rate is (437) and how many noses it has (4).`,
               expectedResult: {
                 arms: 7,
                 heartRate: 437,
                 noses: 4,
+              },
+              distractorRationale: {
+                '*': `Make sure you provide an object with the correct properties: 7 arms, heartRate of 437, 4 noses`,
               },
             },
           ],
@@ -96,6 +121,14 @@ const courseData = {
           topics: [
             {
               topicID: 5,
+              topicLesson: `In Javascript, you can assign values to an object like this: zombie.undead = true; Now the Zombie will look like this:
+                var zombie = {
+                  undead: true,
+                  scary: true,
+                  numberOfEyes: 1,
+                  favouriteFood: 'brains'
+                };
+              `,
               topicName: 'Assigning values',
               topicContent: `The paramedics don't know what to do with the alien so they put some iodine up his nose. This makes his hair stand up on end and he farts loudly. With a panicked look, he says something to you that you don't understand. Then all of a sudden, it hits you: he's talking javascript! He asks you me.status === 'ok'. Tell your alien friend that he's ok. (Hint: if you were telling your mum that computer games are good for you, you would say: games.effect = 'good'; Don't forget the semi colon at the end!)`,
               expectedInput: `you.status = 'ok';`,
