@@ -103,14 +103,22 @@ const courseData = {
                 };
               `,
               topicName: 'Objects',
-              topicContent: `When the ambulance arrives, they ask you to give them the alien's vital statistics in Object format. They want to know how many arms the alien has (7), what its heart rate is (437) and how many noses it has (4).`,
+              topicContent: `When the ambulance arrives, they ask you to give them the alien's vital statistics in Object format. They want to know how many arms the alien has (7), what its heart rate is (437) and how many noses it has (4). Start off with this:
+                return {
+                  arms: 7
+                };
+              `,
               expectedResult: {
                 arms: 7,
                 heartRate: 437,
                 noses: 4,
               },
               distractorRationale: {
-                '*': `Make sure you provide an object with the correct properties: 7 arms, heartRate of 437, 4 noses`,
+                '*': `Make sure you provide an object with the correct properties: 7 arms, heartRate of 437, 4 noses. It will start off like this:
+                  return {
+                    arms: 7
+                  }
+                `,
               },
             },
           ],

@@ -101,10 +101,14 @@ class JavascriptSandboxComponent extends React.Component {
       if (executionResult) {
         return 'CORRECT!';
       }
-      const relevantDistractorRationale =
+
+      if (this.props.distractorRationale) {
+        const relevantDistractorRationale =
         this.props.distractorRationale[this.getCodeFromCodeMirror()] ||
         this.props.distractorRationale['*'];
-      return `Not quite. Here's a hint: ${relevantDistractorRationale}`;
+        return `Not quite. Here's a hint: ${relevantDistractorRationale}`;
+      }
+      return 'Not quite.';
     }
   }
 
